@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="secondaryContainer">#FFDBCE</color>
     <color name="surfaceVariant">#DDE5DB</color>
+    <color name="surfaceContainer">#FFF4F0</color>
+    <color name="secondary">#A63B01</color>
 </resources>

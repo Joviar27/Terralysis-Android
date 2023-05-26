@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center_vertical"
+    android:background="?attr/colorSurfaceContainer">
+    <ImageView
+        android:id="@+id/mtrl_list_item_icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/baseline_language_24"
+        android:padding="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtrl_list_item_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        tools:text="Title"
+        android:gravity="center_vertical"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        app:layout_constraintStart_toEndOf="@id/mtrl_list_item_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/mtrl_list_item_navigation"
+        app:layout_constraintBottom_toTopOf="@id/mtrl_list_item_secondary_text"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtrl_list_item_secondary_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.Material3.BodyLarge"
+        tools:text="Subtitle"
+        android:maxLines="1"
+        android:gravity=""
+        app:layout_constraintEnd_toStartOf="@id/mtrl_list_item_navigation"
+        app:layout_constraintTop_toBottomOf="@id/mtrl_list_item_text"
+        app:layout_constraintStart_toStartOf="@id/mtrl_list_item_text"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mtrl_list_item_navigation"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        style="@style/Widget.Material3.Button.TextButton"
+        app:icon="@drawable/baseline_arrow_right_24"
+        app:iconTint="?attr/colorOnSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

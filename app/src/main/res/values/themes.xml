@@ -6,19 +6,25 @@
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondary">@color/secondary</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="shapeAppearanceCornerMedium">@style/image_rounded20</item>
+        <item name="shapeAppearanceCornerExtraLarge">@style/image_circle</item>
 
         <item name="colorSecondaryContainer">@color/secondaryContainer</item>
         <item name="colorSurfaceVariant">@color/surfaceVariant</item>
+        <item name="colorSurfaceContainer">@color/surfaceContainer</item>
     </style>
     
     <style name="image_rounded20">
         <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="image_circle">
+        <item name="cornerSize">62dp</item>
     </style>
 </resources>
