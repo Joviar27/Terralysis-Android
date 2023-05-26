@@ -12,5 +12,13 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="shapeAppearanceCornerMedium">@style/image_rounded20</item>
+
+        <item name="colorSecondaryContainer">@color/secondaryContainer</item>
+        <item name="colorSurfaceVariant">@color/surfaceVariant</item>
+    </style>
+    
+    <style name="image_rounded20">
+        <item name="cornerSize">20dp</item>
     </style>
 </resources>
