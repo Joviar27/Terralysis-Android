@@ -7,14 +7,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_detail_image"
+        android:id="@+id/iv_profile"
         app:shapeAppearance="?attr/shapeAppearanceCornerMedium"
         tools:srcCompat="@tools:sample/avatars"
         android:layout_width="match_parent"
         android:layout_height="204dp"
         android:layout_gravity="center"
         android:layout_margin="16dp"
-        android:contentDescription="Gambar Tanah"
+        android:contentDescription="@string/cd_gambar_tanah"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +30,7 @@
         android:backgroundTint="?attr/colorSecondaryContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_detail_image">
+        app:layout_constraintTop_toBottomOf="@id/iv_profile">
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,5 +82,4 @@
             style="@style/TextAppearance.Material3.BodyMedium"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure"/>
     </LinearLayout>
-
 </LinearLayout>
