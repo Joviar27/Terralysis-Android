@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_profile"
+        app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge"
+        tools:srcCompat="@tools:sample/avatars"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="36dp"
+        android:adjustViewBounds="true"
+        android:elevation="5dp"
+        android:padding="6dp"
+        android:scaleType="centerCrop"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/full_names"
+        android:maxLines="1"
+        android:layout_gravity="center_horizontal"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_marginTop="4dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/lorem"
+        android:maxLines="1"
+        android:layout_gravity="center_horizontal"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_marginTop="4dp"/>
+
+    <include
+        android:id="@+id/item_bahasa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        layout="@layout/item_list_profile_menu"/>
+
+    <include
+        android:id="@+id/item_bantuan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/item_list_profile_menu"/>
+    <include
+        android:id="@+id/item_tentang_kami"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/item_list_profile_menu"/>
+    <Button
+        android:id="@+id/material_icon_button"
+        style="@style/Widget.Material3.Button.Icon"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Keluar"
+        android:backgroundTint="?attr/colorSecondary"
+        android:textSize="16sp"
+        android:layout_marginTop="64dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"/>
+</LinearLayout>

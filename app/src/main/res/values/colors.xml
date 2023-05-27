@@ -5,6 +5,24 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="primary">#006D3A</color>
+    <color name="primaryVariant">#263A29</color>
+    <color name="primaryContainer">#9AF6B4</color>
+    <color name="onPrimaryContainer">#00210D</color>
+
+    <color name="secondary">#A63B01</color>
+    <color name="secondaryContainer">#FFDBCE</color>
+    <color name="onSecondaryContainer">#370E00</color>
+
+    <color name="surface">#FFFBFF</color>
+    <color name="surfaceVariant">#DDE5DB</color>
+    <color name="surfaceContainer">#FFF4F0</color>
+    <color name="onSurface">#2F1400</color>
+    <color name="onSurfaceVariant">#414941</color>
+
+    <color name="google_button">#4285F4</color>
 </resources>

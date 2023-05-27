@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">Terralysis</string>
+
+    <string name="text_perlu_bantuan">Perlu Bantuan?\nHubungi Kami</string>
+
+    <string name="splash_made_with">Made With Love by C23-P381</string>
+
+    <!-- Sign In Page   -->
+    <string name="signin_welcome_to">Selamat datang di</string>
+    <string name="signin_welcome_message">Temukan dan identifikasi jenis tanah dengan mudah dan akurat melalui pemindaian gambar</string>
+    <string name="guest_mode">Lewati Masuk</string>
+    <string name="signin_with_google">Masuk dengan Google</string>
+
+    <!-- Home Page   -->
+    <string name="home_welcome_message">Selamat datang,\n%s</string>
+    <string name="btn_about_app">What is\nTerralysis?</string>
+    <string name="home_start_scan">Mulai Scan\nDisini!</string>
+
+    <!-- About App   -->
+    <string name="logo_terralysis">Logo Terralysis</string>
+    <string name="version_code">1.0.0</string>
+    <string name="repo_link">Link Repository</string>
+    <string name="our_repository">Our Repository</string>
+
+    <!-- About Us  -->
+    <string name="terralysis_team">Terralysis Team</string>
+
+    <!-- Detail   -->
+    <string name="cd_gambar_tanah">Gambar Tanah</string>
 </resources>
