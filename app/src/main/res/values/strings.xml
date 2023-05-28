@@ -27,4 +27,9 @@
 
     <!-- Detail   -->
     <string name="cd_gambar_tanah">Gambar Tanah</string>
+
+    <!-- Navigation  -->
+    <string name="title_home">Home</string>
+    <string name="title_history">Riwayat</string>
+    <string name="title_profile">Profil</string>
 </resources>
