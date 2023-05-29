@@ -11,7 +11,10 @@
         android:label="@string/title_home"
         tools:layout="@layout/layout_home">
         <action
-            android:id="@+id/action_HomeFragment_to_CameraFragment"
+            android:id="@+id/action_navigation_home_to_navigation_guide"
+            app:destination="@id/navigation_guide" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_camera"
             app:destination="@id/navigation_camera" />
     </fragment>
 
@@ -19,7 +22,11 @@
         android:id="@+id/navigation_history"
         android:name="com.example.terralysis.ui.riwayat.RiwayatFragment"
         android:label="@string/title_history"
-        tools:layout="@layout/layout_riwayat"/>
+        tools:layout="@layout/layout_riwayat">
+        <action
+            android:id="@+id/action_navigation_history_to_navigation_detail"
+            app:destination="@id/navigation_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
@@ -39,7 +46,11 @@
         android:id="@+id/navigation_bantuan"
         android:name="com.example.terralysis.ui.bantuan.BantuanFragment"
         android:label="@string/title_bantuan"
-        tools:layout="@layout/layout_bantuan_page" />
+        tools:layout="@layout/layout_bantuan_page" >
+        <action
+            android:id="@+id/action_navigation_bantuan_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_camera"
@@ -48,17 +59,82 @@
         <action
             android:id="@+id/action_CameraFragment_to_DetailFragment"
             app:destination="@id/navigation_detail" />
+        <action
+            android:id="@+id/action_navigation_camera_to_navigation_history"
+            app:destination="@id/navigation_history" />
+        <action
+            android:id="@+id/action_navigation_camera_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_detail"
         android:name="com.example.terralysis.ui.detail.DetailFragment"
         android:label="@string/title_detail"
-        tools:layout="@layout/layout_detail_page" />
+        tools:layout="@layout/layout_detail_page" >
+        <action
+            android:id="@+id/action_navigation_detail_to_navigation_history"
+            app:destination="@id/navigation_history" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_about"
         android:label="@string/title_about"
         android:name="com.example.terralysis.ui.about.AboutFragment"
-        tools:layout="@layout/layout_about_app" />
+        tools:layout="@layout/layout_about_app" >
+        <action
+            android:id="@+id/action_navigation_about_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_guide"
+        android:name="com.example.terralysis.ui.guide.GuideFragment"
+        android:label="@string/title_guide"
+        tools:layout="@layout/layout_guide"/>
+    <fragment
+        android:id="@+id/navigation_signin"
+        android:name="com.example.terralysis.ui.signin.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/layout_signin">
+        <action
+            android:id="@+id/action_signInFragment_to_welcomeFragment"
+            app:destination="@id/navigation_welcome" />
+        <action
+            android:id="@+id/action_signInFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_signup"
+        android:name="com.example.terralysis.ui.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/layout_signup">
+        <action
+            android:id="@+id/action_signUpFragment_to_welcomeFragment"
+            app:destination="@id/navigation_welcome" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_splashscreen"
+        android:name="com.example.terralysis.ui.splashscreen.SplashScreenFragment"
+        android:label="SplashScreenFragment"
+        tools:layout="@layout/layout_splash_screen">
+        <action
+            android:id="@+id/action_splashScreenFragment_to_welcomeFragment"
+            app:destination="@id/navigation_welcome"/>
+        <action
+            android:id="@+id/action_splashScreenFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_welcome"
+        android:name="com.example.terralysis.ui.welcome.WelcomeFragment"
+        android:label="WelcomeFragment"
+        tools:layout="@layout/layout_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_signInFragment"
+            app:destination="@id/navigation_signin" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_signUpFragment"
+            app:destination="@id/navigation_signup" />
+    </fragment>
 </navigation>
