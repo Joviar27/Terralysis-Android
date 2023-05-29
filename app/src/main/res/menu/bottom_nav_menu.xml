@@ -16,4 +16,9 @@
         android:icon="@drawable/icon_profile"
         android:title="@string/title_profile" />
 
+    <item
+        android:id="@+id/navigation_scan"
+        android:icon="@drawable/icon_profile"
+        android:title="@string/title_scan" />
+
 </menu>
