@@ -1,9 +1,11 @@
 package com.example.terralysis
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -27,5 +29,19 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         navView.setupWithNavController(navController)
+
+        setBottomNavigation(navController)
+    }
+
+    private fun setBottomNavigation(navController: NavController) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.navView.visibility =
+                if (listFrament.contains(destination.id)) View.VISIBLE else View.GONE
+        }
+    }
+
+    companion object {
+        val listFrament =
+            listOf(R.id.navigation_home, R.id.navigation_history, R.id.navigation_profile)
     }
 }
