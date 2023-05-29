@@ -47,7 +47,6 @@
         android:layout_height="60dp"
         style="@style/Widget.Material3.Button.TextButton"
         app:icon="@drawable/baseline_arrow_right_24"
-        app:iconTint="?attr/colorOnSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
