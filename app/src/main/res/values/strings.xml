@@ -8,8 +8,8 @@
     <!-- Sign In Page   -->
     <string name="signin_welcome_to">Selamat datang di</string>
     <string name="signin_welcome_message">Temukan dan identifikasi jenis tanah dengan mudah dan akurat melalui pemindaian gambar</string>
-    <string name="guest_mode">Lewati Masuk</string>
-    <string name="signin_with_google">Masuk dengan Google</string>
+    <string name="masuk">Masuk</string>
+    <string name="daftar">Daftar</string>
 
     <!-- Home Page   -->
     <string name="home_welcome_message">Selamat datang,\n%s</string>
@@ -27,4 +27,9 @@
 
     <!-- Detail   -->
     <string name="cd_gambar_tanah">Gambar Tanah</string>
+
+    <!--  Signin and Signup  -->
+    <string name="alamat_email">Email</string>
+    <string name="password">Password</string>
+    <string name="nama">Nama</string>
 </resources>
