@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_profile"
-        app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
         tools:srcCompat="@tools:sample/avatars"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         layout="@layout/item_list_profile_menu"/>
     <include
-        android:id="@+id/item_tentang_kami"
+        android:id="@+id/item_about_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/item_list_profile_menu"/>
