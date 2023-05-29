@@ -24,9 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
-        val navController = navHostFragment.navController
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         navView.setupWithNavController(navController)
 
@@ -51,6 +49,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val listFrament =
-            listOf(R.id.navigation_home, R.id.navigation_history, R.id.navigation_profile)
+            listOf(R.id.navigation_home, R.id.navigation_scan, R.id.navigation_history, R.id.navigation_profile)
     }
 }
