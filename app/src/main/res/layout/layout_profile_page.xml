@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         layout="@layout/item_list_profile_menu"/>
     <include
-        android:id="@+id/item_tentang_kami"
+        android:id="@+id/item_about_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/item_list_profile_menu"/>

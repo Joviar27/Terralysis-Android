@@ -28,10 +28,20 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.itemBantuan.mtrlListItemNavigation.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_profileFragment_to_bantuanFragment)
-        )
+        setNavigation()
     }
+
+    private fun setNavigation(){
+        binding.apply {
+            itemBantuan.mtrlListItemNavigation.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_profileFragment_to_bantuanFragment)
+            )
+            itemAboutApp.mtrlListItemNavigation.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_profileFragment_to_AboutFragment)
+            )
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

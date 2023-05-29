@@ -29,6 +29,10 @@
         <action
             android:id="@+id/action_profileFragment_to_bantuanFragment"
             app:destination="@id/navigation_bantuan" />
+
+        <action
+            android:id="@+id/action_profileFragment_to_AboutFragment"
+            app:destination="@id/navigation_about" />
     </fragment>
 
     <fragment
@@ -49,4 +53,9 @@
         android:id="@+id/navigation_detail"
         android:name="com.example.terralysis.ui.detail.DetailFragment"
         tools:layout="@layout/layout_detail_page" />
+
+    <fragment
+        android:id="@+id/navigation_about"
+        android:name="com.example.terralysis.ui.about.AboutFragment"
+        tools:layout="@layout/layout_about_app" />
 </navigation>
