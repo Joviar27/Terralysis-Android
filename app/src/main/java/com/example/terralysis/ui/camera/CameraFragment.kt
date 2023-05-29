@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import com.example.terralysis.R
 import com.example.terralysis.databinding.ActivityCameraBinding
 
 class CameraFragment : Fragment() {
@@ -27,9 +29,15 @@ class CameraFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         backNavigation()
-
+        takePicture()
     }
 
+    private fun takePicture(){
+        binding.btnCapture.setOnClickListener(
+            //logic for taking a picture
+            Navigation.createNavigateOnClickListener(R.id.action_CameraFragment_to_DetailFragment)
+        )
+    }
     private fun backNavigation(){
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()

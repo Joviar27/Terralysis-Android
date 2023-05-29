@@ -39,5 +39,14 @@
     <fragment
         android:id="@+id/navigation_camera"
         android:name="com.example.terralysis.ui.camera.CameraFragment"
-        tools:layout="@layout/activity_camera" />
+        tools:layout="@layout/activity_camera">
+        <action
+            android:id="@+id/action_CameraFragment_to_DetailFragment"
+            app:destination="@id/navigation_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detail"
+        android:name="com.example.terralysis.ui.detail.DetailFragment"
+        tools:layout="@layout/layout_detail_page" />
 </navigation>
