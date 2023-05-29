@@ -73,7 +73,7 @@
             android:gravity="bottom"
             android:padding="16dp"
             android:text="@string/btn_about_app"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
