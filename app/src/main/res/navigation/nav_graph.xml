@@ -38,6 +38,7 @@
     <fragment
         android:id="@+id/navigation_bantuan"
         android:name="com.example.terralysis.ui.bantuan.BantuanFragment"
+        android:label="@string/title_bantuan"
         tools:layout="@layout/layout_bantuan_page" />
 
     <fragment
@@ -52,10 +53,12 @@
     <fragment
         android:id="@+id/navigation_detail"
         android:name="com.example.terralysis.ui.detail.DetailFragment"
+        android:label="@string/title_detail"
         tools:layout="@layout/layout_detail_page" />
 
     <fragment
         android:id="@+id/navigation_about"
+        android:label="@string/title_about"
         android:name="com.example.terralysis.ui.about.AboutFragment"
         tools:layout="@layout/layout_about_app" />
 </navigation>

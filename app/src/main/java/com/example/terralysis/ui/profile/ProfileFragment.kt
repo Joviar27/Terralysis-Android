@@ -28,7 +28,25 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setContent()
         setNavigation()
+    }
+
+    private fun setContent(){
+        binding.itemBahasa.apply {
+            mtrlListItemText.text = resources.getText(R.string.language)
+            mtrlListItemSecondaryText.text = "Indonesia"
+        }
+        binding.itemBantuan.apply {
+            mtrlListItemIcon.setImageResource(R.drawable.outline_contact_support_24)
+            mtrlListItemText.text = resources.getText(R.string.bantuan)
+            mtrlListItemSecondaryText.visibility = View.GONE
+        }
+        binding.itemAboutApp.apply {
+            mtrlListItemIcon.setImageResource(R.drawable.outline_info_24)
+            mtrlListItemText.text = resources.getText(R.string.about_app)
+            mtrlListItemSecondaryText.visibility = View.GONE
+        }
     }
 
     private fun setNavigation(){

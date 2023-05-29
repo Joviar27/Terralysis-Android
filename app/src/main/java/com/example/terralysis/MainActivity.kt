@@ -37,6 +37,15 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.navView.visibility =
                 if (listFrament.contains(destination.id)) View.VISIBLE else View.GONE
+
+            binding.toolbar.apply {
+                visibility =
+                    if (listFrament.contains(destination.id) || destination.id == R.id.navigation_camera) View.GONE
+                    else View.VISIBLE
+                title = destination.label
+                setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+            }
+
         }
     }
 
