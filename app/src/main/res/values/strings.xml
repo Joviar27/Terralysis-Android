@@ -32,4 +32,13 @@
     <string name="alamat_email">Email</string>
     <string name="password">Password</string>
     <string name="nama">Nama</string>
+
+    <!-- Bottom bar   -->
+    <string name="title_home">Beranda</string>
+    <string name="title_history">Riwayat</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_bantuan">Bantuan</string>
+    <string name="title_detail">Detail Analisa</string>
+    <string name="title_about">Tentang Aplikasi</string>
+
 </resources>
