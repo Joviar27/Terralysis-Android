@@ -1,17 +1,14 @@
-package com.example.terralysis.ui.home
+package com.example.terralysis.ui.camera
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.example.terralysis.R
-import com.example.terralysis.databinding.LayoutHomeBinding
+import com.example.terralysis.databinding.ActivityCameraBinding
 
-class HomeFragment : Fragment() {
-
-    private var _binding: LayoutHomeBinding? = null
+class CameraFragment : Fragment() {
+    private var _binding: ActivityCameraBinding? = null
 
     private val binding get() = _binding!!
 
@@ -21,7 +18,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = LayoutHomeBinding.inflate(inflater, container, false)
+        _binding = ActivityCameraBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
@@ -29,14 +26,16 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navigateToCamera()
+        backNavigation()
+
     }
 
-    private fun navigateToCamera(){
-        binding.btnScan.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_HomeFragment_to_CameraFragment)
-        )
+    private fun backNavigation(){
+        binding.btnBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
