@@ -13,7 +13,7 @@
 
     <!-- Home Page   -->
     <string name="home_welcome_message">Selamat datang,\n%s</string>
-    <string name="btn_about_app">What is\nTerralysis?</string>
+    <string name="btn_about_app">Bagaimana\nCara Memulai?</string>
     <string name="home_start_scan">Mulai Scan\nDisini!</string>
 
     <!-- About App   -->
@@ -40,5 +40,7 @@
     <string name="title_bantuan">Bantuan</string>
     <string name="title_detail">Detail Analisa</string>
     <string name="title_about">Tentang Aplikasi</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_guide">Panduan</string>
 
 </resources>
