@@ -30,13 +30,21 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navigateToCamera()
+        navigateToAbout()
     }
 
     private fun navigateToCamera(){
         binding.btnScan.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_HomeFragment_to_CameraFragment)
+            Navigation.createNavigateOnClickListener(R.id.action_navigation_home_to_navigation_camera)
         )
     }
+
+    private fun navigateToAbout(){
+        binding.btnAboutApps.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_navigation_home_to_navigation_guide)
+        )
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
