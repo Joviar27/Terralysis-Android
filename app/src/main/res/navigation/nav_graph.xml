@@ -12,7 +12,7 @@
         tools:layout="@layout/layout_home" />
 
     <fragment
-        android:id="@+id/navigation_riwayat"
+        android:id="@+id/navigation_history"
         android:name="com.example.terralysis.ui.riwayat.RiwayatFragment"
         android:label="@string/title_history"
         tools:layout="@layout/layout_riwayat" />
