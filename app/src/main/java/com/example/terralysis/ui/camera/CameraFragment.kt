@@ -8,11 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import com.example.terralysis.util.createTempFile
 import com.example.terralysis.R
 import com.example.terralysis.databinding.ActivityCameraBinding
+import com.example.terralysis.util.rotateImage
 
 class CameraFragment : Fragment() {
     private var _binding: ActivityCameraBinding? = null
@@ -22,7 +30,7 @@ class CameraFragment : Fragment() {
     private val requestPermissionsLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             if (permissions.all { it.value }) {
-                // start camera
+                startCamera()
             } else {
                 // Permissions not granted
                 showToast("Tidak mendapatkan izin")
@@ -45,7 +53,12 @@ class CameraFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(!allPermissionsGranted()) requestPermissionsLauncher.launch(REQUIRED_PERMISSIONS)
+        if (!allPermissionsGranted()) requestPermissionsLauncher.launch(REQUIRED_PERMISSIONS)
+        else startCamera()
+
+        binding.apply {
+            btnCapture.setOnClickListener{ takePicture() }
+        }
 
         backNavigation()
         takePicture()
@@ -59,24 +72,72 @@ class CameraFragment : Fragment() {
         parentFragmentManager.beginTransaction().remove(this).commit()
     }
 
-    private fun takePicture(){
-        binding.btnCapture.setOnClickListener(
-            //logic for taking a picture
-            Navigation.createNavigateOnClickListener(R.id.action_CameraFragment_to_DetailFragment)
-        )
+    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private var imageCapture: ImageCapture? = null
+    private fun startCamera() {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
+        cameraProviderFuture.addListener({
+            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+            val preview = Preview.Builder()
+                .build()
+                .also {
+                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
+                }
+            imageCapture = ImageCapture.Builder().build()
+            try {
+                cameraProvider.unbindAll()
+                cameraProvider.bindToLifecycle(
+                    this,
+                    cameraSelector,
+                    preview,
+                    imageCapture
+                )
+            } catch (exc: Exception) {
+                showToast("Gagal Memunculkan kamera")
+            }
+        }, ContextCompat.getMainExecutor(requireContext()))
     }
-    private fun backNavigation(){
+
+    private fun takePicture() {
+        val imageCapture = imageCapture ?: return
+        val photoFile = createTempFile(requireContext())
+
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+
+        imageCapture.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(requireContext()),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                    rotateImage(photoFile.absolutePath)
+                    navigateToDetail(photoFile.absolutePath)
+                }
+
+                override fun onError(exception: ImageCaptureException) {
+                    showToast("Gagal mengambil gambar")
+                }
+            })
+    }
+
+    private fun backNavigation() {
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
 
-    private fun showToast(message: String){
+    private fun showToast(message: String) {
         Toast.makeText(
             requireContext(),
             message,
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    //temp - navigate to detail
+    private fun navigateToDetail(imagePath: String){
+        val bundle = Bundle()
+        bundle.putString("image_path", imagePath)
+        view?.findNavController()?.navigate(R.id.action_CameraFragment_to_DetailFragment, bundle)
     }
 
     override fun onDestroyView() {

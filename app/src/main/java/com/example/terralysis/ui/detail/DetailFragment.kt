@@ -1,5 +1,6 @@
 package com.example.terralysis.ui.detail
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,15 @@ class DetailFragment : Fragment() {
         _binding = LayoutDetailPageBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // temp - displaying image
+        val imagePath = arguments?.getString("image_path")
+        val bitmap = BitmapFactory.decodeFile(imagePath)
+        binding.ivProfile.setImageBitmap(bitmap)
     }
 
     override fun onDestroyView() {
