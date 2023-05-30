@@ -1,7 +1,10 @@
 package com.example.terralysis.ui.camera
 
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +24,7 @@ import com.example.terralysis.util.createTempFile
 import com.example.terralysis.R
 import com.example.terralysis.databinding.ActivityCameraBinding
 import com.example.terralysis.util.rotateImage
+import com.example.terralysis.util.uriToFile
 
 class CameraFragment : Fragment() {
     private var _binding: ActivityCameraBinding? = null
@@ -38,6 +42,18 @@ class CameraFragment : Fragment() {
                 finishFragment()
             }
         }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val selectedImg = result.data?.data as Uri
+            selectedImg.let { uri ->
+                val myFile = uriToFile(uri, requireContext())
+                navigateToDetail(myFile.absolutePath)
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,10 +75,10 @@ class CameraFragment : Fragment() {
         binding.apply {
             btnCapture.setOnClickListener{ takePicture() }
             btnSwitch.setOnClickListener{ switchCamera() }
+            btnUpload.setOnClickListener{ startGallery() }
         }
 
         backNavigation()
-        takePicture()
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
@@ -131,6 +147,14 @@ class CameraFragment : Fragment() {
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
+    }
+
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Pilih gambar")
+        launcherIntentGallery.launch(chooser)
     }
 
     private fun showToast(message: String) {
