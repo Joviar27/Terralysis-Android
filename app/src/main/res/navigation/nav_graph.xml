@@ -15,7 +15,7 @@
             app:destination="@id/navigation_guide" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_camera"
-            app:destination="@id/navigation_camera" />
+            app:destination="@id/navigation_scan" />
     </fragment>
 
     <fragment
@@ -53,7 +53,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_camera"
+        android:id="@+id/navigation_scan"
         android:name="com.example.terralysis.ui.camera.CameraFragment"
         tools:layout="@layout/activity_camera">
         <action

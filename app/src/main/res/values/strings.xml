@@ -46,6 +46,6 @@
     <!-- Profil  -->
     <string name="language">Bahasa</string>
     <string name="bantuan">Bantuan</string>
-    <string name="about_app">Bahasa</string>
+    <string name="about_app">Tentang Aplikasi</string>
 
 </resources>
