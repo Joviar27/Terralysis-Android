@@ -18,11 +18,10 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import com.example.terralysis.util.createTempFile
 import com.example.terralysis.R
 import com.example.terralysis.databinding.ActivityCameraBinding
+import com.example.terralysis.util.createTempFile
 import com.example.terralysis.util.rotateImage
 import com.example.terralysis.util.uriToFile
 
@@ -30,6 +29,9 @@ class CameraFragment : Fragment() {
     private var _binding: ActivityCameraBinding? = null
 
     private val binding get() = _binding!!
+
+    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private var imageCapture: ImageCapture? = null
 
     private val requestPermissionsLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -73,12 +75,11 @@ class CameraFragment : Fragment() {
         else startCamera()
 
         binding.apply {
-            btnCapture.setOnClickListener{ takePicture() }
-            btnSwitch.setOnClickListener{ switchCamera() }
-            btnUpload.setOnClickListener{ startGallery() }
+            btnCapture.setOnClickListener { takePicture() }
+            btnSwitch.setOnClickListener { switchCamera() }
+            btnUpload.setOnClickListener { startGallery() }
+            btnBack.setOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
         }
-
-        backNavigation()
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
@@ -89,8 +90,6 @@ class CameraFragment : Fragment() {
         parentFragmentManager.beginTransaction().remove(this).commit()
     }
 
-    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-    private var imageCapture: ImageCapture? = null
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener({
@@ -143,12 +142,6 @@ class CameraFragment : Fragment() {
             })
     }
 
-    private fun backNavigation() {
-        binding.btnBack.setOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
-        }
-    }
-
     private fun startGallery() {
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
@@ -166,7 +159,7 @@ class CameraFragment : Fragment() {
     }
 
     //temp - navigate to detail
-    private fun navigateToDetail(imagePath: String){
+    private fun navigateToDetail(imagePath: String) {
         val bundle = Bundle()
         bundle.putString("image_path", imagePath)
         view?.findNavController()?.navigate(R.id.action_CameraFragment_to_DetailFragment, bundle)
