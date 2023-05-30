@@ -7,6 +7,11 @@
         android:title="@string/title_home" />
 
     <item
+        android:id="@+id/navigation_scan"
+        android:icon="@drawable/icon_scan"
+        android:title="@string/title_scan" />
+
+    <item
         android:id="@+id/navigation_history"
         android:icon="@drawable/icon_history"
         android:title="@string/title_history" />
