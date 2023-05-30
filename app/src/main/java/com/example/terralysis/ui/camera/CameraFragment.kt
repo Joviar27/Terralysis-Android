@@ -58,6 +58,7 @@ class CameraFragment : Fragment() {
 
         binding.apply {
             btnCapture.setOnClickListener{ takePicture() }
+            btnSwitch.setOnClickListener{ switchCamera() }
         }
 
         backNavigation()
@@ -96,6 +97,13 @@ class CameraFragment : Fragment() {
                 showToast("Gagal Memunculkan kamera")
             }
         }, ContextCompat.getMainExecutor(requireContext()))
+    }
+
+    private fun switchCamera() {
+        cameraSelector =
+            if (cameraSelector.equals(CameraSelector.DEFAULT_BACK_CAMERA)) CameraSelector.DEFAULT_FRONT_CAMERA
+            else CameraSelector.DEFAULT_BACK_CAMERA
+        startCamera()
     }
 
     private fun takePicture() {
