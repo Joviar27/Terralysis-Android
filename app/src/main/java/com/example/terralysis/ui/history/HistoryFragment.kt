@@ -1,14 +1,14 @@
-package com.example.terralysis.ui.riwayat
+package com.example.terralysis.ui.history
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.terralysis.databinding.LayoutRiwayatBinding
+import com.example.terralysis.databinding.LayoutHistoryBinding
 
-class RiwayatFragment : Fragment() {
-    private var _binding: LayoutRiwayatBinding? = null
+class HistoryFragment : Fragment() {
+    private var _binding: LayoutHistoryBinding? = null
 
     private val binding get() = _binding!!
 
@@ -18,7 +18,7 @@ class RiwayatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = LayoutRiwayatBinding.inflate(inflater, container, false)
+        _binding = LayoutHistoryBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
