@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
 
-    private var BASE_URL : String = "" //TODO "Add API Url"
+    private var BASE_URL : String = "https://terralysis-api-v2-l22usupt4a-uc.a.run.app"
 
     fun getApiService(authPreference: AuthPreference) : ApiService {
 
