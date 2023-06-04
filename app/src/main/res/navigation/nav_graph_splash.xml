@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_splash"
+    app:startDestination="@id/navigation_splashscreen">
+    <fragment
+        android:id="@+id/navigation_splashscreen"
+        android:name="com.example.terralysis.ui.authorization.splashscreen.SplashScreenFragment"
+        android:label="SplashScreenFragment"
+        tools:layout="@layout/layout_splash_screen">
+    </fragment>
+</navigation>

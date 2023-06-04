@@ -92,49 +92,4 @@
         android:name="com.example.terralysis.ui.guide.GuideFragment"
         android:label="@string/title_guide"
         tools:layout="@layout/layout_guide"/>
-    <fragment
-        android:id="@+id/navigation_signin"
-        android:name="com.example.terralysis.ui.signin.SignInFragment"
-        android:label="SignInFragment"
-        tools:layout="@layout/layout_signin">
-        <action
-            android:id="@+id/action_signInFragment_to_welcomeFragment"
-            app:destination="@id/navigation_welcome" />
-        <action
-            android:id="@+id/action_signInFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_signup"
-        android:name="com.example.terralysis.ui.signup.SignUpFragment"
-        android:label="SignUpFragment"
-        tools:layout="@layout/layout_signup">
-        <action
-            android:id="@+id/action_signUpFragment_to_welcomeFragment"
-            app:destination="@id/navigation_welcome" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_splashscreen"
-        android:name="com.example.terralysis.ui.splashscreen.SplashScreenFragment"
-        android:label="SplashScreenFragment"
-        tools:layout="@layout/layout_splash_screen">
-        <action
-            android:id="@+id/action_splashScreenFragment_to_welcomeFragment"
-            app:destination="@id/navigation_welcome"/>
-        <action
-            android:id="@+id/action_splashScreenFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_welcome"
-        android:name="com.example.terralysis.ui.welcome.WelcomeFragment"
-        android:label="WelcomeFragment"
-        tools:layout="@layout/layout_welcome">
-        <action
-            android:id="@+id/action_welcomeFragment_to_signInFragment"
-            app:destination="@id/navigation_signin" />
-        <action
-            android:id="@+id/action_welcomeFragment_to_signUpFragment"
-            app:destination="@id/navigation_signup" />
-    </fragment>
 </navigation>

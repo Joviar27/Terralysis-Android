@@ -11,9 +11,9 @@ import com.example.terralysis.ui.detail.DetailViewModel
 import com.example.terralysis.ui.history.HistoryViewModel
 import com.example.terralysis.ui.home.HomeViewModel
 import com.example.terralysis.ui.profile.ProfileViewModel
-import com.example.terralysis.ui.signin.SignInViewModel
-import com.example.terralysis.ui.signup.SignUpViewModel
-import com.example.terralysis.ui.splashscreen.SplashScreenViewModel
+import com.example.terralysis.ui.authorization.signin.SignInViewModel
+import com.example.terralysis.ui.authorization.signup.SignUpViewModel
+import com.example.terralysis.ui.authorization.splashscreen.SplashScreenViewModel
 
 class ViewModelFactory (
     private val scanRepository: ScanRepository,

@@ -1,14 +1,15 @@
-package com.example.terralysis.ui.splashscreen
+package com.example.terralysis.ui.authorization.signup
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.terralysis.databinding.LayoutSplashScreenBinding
+import com.example.terralysis.databinding.LayoutSigninBinding
+import com.example.terralysis.databinding.LayoutSignupBinding
 
-class SplashScreenFragment : Fragment() {
-    private var _binding: LayoutSplashScreenBinding? = null
+class SignUpFragment : Fragment() {
+    private var _binding: LayoutSignupBinding? = null
 
     private val binding get() = _binding!!
 
@@ -17,8 +18,10 @@ class SplashScreenFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = LayoutSplashScreenBinding.inflate(inflater, container, false)
-        return binding.root
+
+        _binding = LayoutSignupBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        return root
     }
 
     override fun onDestroyView() {

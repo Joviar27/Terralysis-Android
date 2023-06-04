@@ -1,4 +1,4 @@
-package com.example.terralysis.ui.signup
+package com.example.terralysis.ui.authorization.signup
 
 import androidx.lifecycle.ViewModel
 import com.example.terralysis.data.repository.AuthRepository

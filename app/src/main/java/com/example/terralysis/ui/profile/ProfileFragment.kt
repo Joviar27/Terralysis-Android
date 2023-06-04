@@ -1,5 +1,6 @@
 package com.example.terralysis.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.terralysis.R
 import com.example.terralysis.databinding.LayoutProfilePageBinding
+import com.example.terralysis.ui.AuthActivity
 
 class ProfileFragment : Fragment() {
     private var _binding: LayoutProfilePageBinding? = null
@@ -57,7 +59,15 @@ class ProfileFragment : Fragment() {
             itemAboutApp.mtrlListItemNavigation.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_profileFragment_to_AboutFragment)
             )
+            btnLogout.setOnClickListener{ /* logout */ }
         }
+    }
+
+    private fun startAuthActivity(){
+        val authIntent = Intent(requireContext(), AuthActivity::class.java)
+        authIntent.putExtra(AuthActivity.isSplash, false)
+        startActivity(authIntent)
+        requireActivity().finish()
     }
 
 
