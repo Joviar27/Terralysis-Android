@@ -10,4 +10,4 @@ data class SignUpResponse(
     @field:SerializedName("message")
     val message: String? = null,
 
-)
+    )

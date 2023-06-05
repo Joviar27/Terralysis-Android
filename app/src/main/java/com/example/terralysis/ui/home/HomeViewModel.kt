@@ -6,8 +6,8 @@ import com.example.terralysis.data.repository.AuthRepository
 class HomeViewModel (
     private val authRepository: AuthRepository
     ) : ViewModel() {
-        fun getUserData() = authRepository.getUserData()
+    fun getUserData() = authRepository.getUserData()
 
-        fun getAuthData() = authRepository.checkAuthState()
+    fun getAuthData() = authRepository.checkAuthState()
 
 }

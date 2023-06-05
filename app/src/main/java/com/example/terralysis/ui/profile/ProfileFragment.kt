@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -44,14 +45,12 @@ class ProfileFragment : Fragment() {
 
     private fun checkAuth(){
         viewModel.getAuthData().observe(viewLifecycleOwner){ result ->
-            when (result){
-                is ResultState.Loading ->{ }
-                is ResultState.Error ->{ }
-                is ResultState.Success -> {
-                    if(result.data?.state == false){
-                        startAuthActivity()
-                    }
+            when(result){
+                is ResultState.Loading -> {}
+                is ResultState.Error -> {
+                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                 }
+                is ResultState.Success -> if(result.data?.state == false) startAuthActivity()
             }
         }
     }

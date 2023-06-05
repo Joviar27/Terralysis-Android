@@ -10,7 +10,6 @@ import com.example.terralysis.data.remote.response.SignInResponse
 import com.example.terralysis.data.remote.response.SignUpResponse
 import com.example.terralysis.data.remote.retrofit.ApiService
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.runBlocking
 
 class AuthRepository(
     private val apiService: ApiService,
@@ -112,6 +111,7 @@ class AuthRepository(
 
     suspend fun logout() {
         authPreference.clearAuth()
+        userPreference.clearUser()
     }
 
     companion object{

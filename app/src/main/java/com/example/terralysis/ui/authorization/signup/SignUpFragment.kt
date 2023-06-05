@@ -11,7 +11,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.terralysis.R
 import com.example.terralysis.data.ResultState
-import com.example.terralysis.databinding.LayoutSigninBinding
 import com.example.terralysis.databinding.LayoutSignupBinding
 import com.example.terralysis.util.ViewModelFactory
 
@@ -61,9 +60,13 @@ class SignUpFragment : Fragment() {
             else -> {
                 viewModel.signUp(name, email, password).observe(viewLifecycleOwner) { result ->
                     when (result) {
-                        is ResultState.Loading -> {}
-                        is ResultState.Error -> Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                        is ResultState.Loading -> binding.pbLoading.visibility = View.VISIBLE
+                        is ResultState.Error -> {
+                            binding.pbLoading.visibility = View.GONE
+                            Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                        }
                         is ResultState.Success -> {
+                            binding.pbLoading.visibility = View.GONE
                             if(result.data.error == false){
                                 Toast.makeText(requireContext(), result.data.message, Toast.LENGTH_SHORT).show()
                                 findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)

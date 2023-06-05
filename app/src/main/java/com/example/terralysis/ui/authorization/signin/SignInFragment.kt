@@ -51,8 +51,12 @@ class SignInFragment : Fragment() {
         viewModel.getAuthData().observe(viewLifecycleOwner){ result ->
             when(result){
                 is ResultState.Loading -> {}
-                is ResultState.Error -> Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                is ResultState.Error -> {
+                    binding.pbLoading.visibility = View.GONE
+                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                }
                 is ResultState.Success -> {
+                    binding.pbLoading.visibility = View.GONE
                     if(result.data?.state == true) startMainActivity()
                 }
             }
@@ -70,9 +74,12 @@ class SignInFragment : Fragment() {
             else -> {
                 viewModel.signIn(email, password).observe(viewLifecycleOwner) { result ->
                     when (result) {
-                        is ResultState.Loading -> {}
-                        is ResultState.Error -> Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
-                        is ResultState.Success -> { /*do nothing*/ }
+                        is ResultState.Loading -> binding.pbLoading.visibility = View.VISIBLE
+                        is ResultState.Error -> {
+                            binding.pbLoading.visibility = View.GONE
+                            Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                        }
+                        is ResultState.Success -> binding.pbLoading.visibility = View.GONE
                     }
                 }
             }

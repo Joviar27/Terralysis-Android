@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -20,7 +21,7 @@ class HomeFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel: HomeViewModel by viewModels{
+    private val viewModel: HomeViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -39,34 +40,46 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         checkAuth()
+        setUser()
         navigateToCamera()
-        navigateToAbout()
+        navigateToGuide()
     }
 
-    private fun checkAuth(){
-        viewModel.getAuthData().observe(viewLifecycleOwner){ result ->
-            when (result){
-                is ResultState.Loading ->{ }
-                is ResultState.Error ->{ }
-                is ResultState.Success -> if(result.data?.state == false) startAuthActivity()
+    private fun checkAuth() {
+        viewModel.getAuthData().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is ResultState.Loading -> {}
+                is ResultState.Error -> {}
+                is ResultState.Success -> if (result.data?.state == false) startAuthActivity()
             }
         }
     }
 
-    private fun startAuthActivity(){
+    private fun setUser() {
+        viewModel.getUserData().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is ResultState.Loading -> { /*do nothing*/ }
+                is ResultState.Error -> Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT)
+                is ResultState.Success -> binding.tvWelcomeName.text =
+                    resources.getString(R.string.home_welcome_message, result.data?.name)
+            }
+        }
+    }
+
+    private fun startAuthActivity() {
         val authIntent = Intent(requireContext(), AuthActivity::class.java)
         authIntent.putExtra(AuthActivity.isSplash, false)
         startActivity(authIntent)
         requireActivity().finish()
     }
 
-    private fun navigateToCamera(){
+    private fun navigateToCamera() {
         binding.btnScan.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_navigation_home_to_navigation_camera)
         )
     }
 
-    private fun navigateToAbout(){
+    private fun navigateToGuide() {
         binding.btnAboutApps.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_navigation_home_to_navigation_guide)
         )

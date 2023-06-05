@@ -3,7 +3,6 @@ package com.example.terralysis.ui.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.terralysis.data.repository.AuthRepository
-import com.example.terralysis.data.repository.ScanRepository
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(

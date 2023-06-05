@@ -21,7 +21,7 @@
         style="@style/TextAppearance.Material3.BodyMedium"
         tools:text="Nama\t\t: X" />
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_address_member1"
+        android:id="@+id/tv_email_member1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/TextAppearance.Material3.BodyMedium"
@@ -34,7 +34,7 @@
         style="@style/TextAppearance.Material3.BodyMedium"
         tools:text="Nama\t\t: X" />
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_address_member2"
+        android:id="@+id/tv_email_member2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/TextAppearance.Material3.BodyMedium"
