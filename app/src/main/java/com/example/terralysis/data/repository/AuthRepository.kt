@@ -1,8 +1,6 @@
 package com.example.terralysis.data.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import com.example.terralysis.data.ResultState
 import com.example.terralysis.data.local.datastore.AuthPreference
 import com.example.terralysis.data.local.datastore.UserPreference
@@ -43,39 +41,36 @@ class AuthRepository(
     fun signIn(
         email: String,
         password: String
-    ) : LiveData<ResultState<SignInResponse>> = liveData {
+    ): LiveData<ResultState<SignInResponse>> = liveData {
         emit(ResultState.Loading)
-        try{
-            val responseLogin = apiService.signIn(email,password)
+        try {
+            val responseLogin = apiService.signIn(email, password)
 
-            /* TODO"Handle the response similar way to the code below"
-            when(responseLogin.error){
+            when (responseLogin.error) {
                 true -> {
-                    emit(ResultState.Error(responseLogin.message))
+                    emit(ResultState.Error(responseLogin.message ?: "Login Gagal"))
                 }
-                false -> {
-                    val remoteResponse = MutableLiveData<ResultState<LoginResponse>>()
+                else -> {
+                    val remoteResponse = MutableLiveData<ResultState<SignInResponse>>()
                     remoteResponse.value = ResultState.Success(responseLogin)
 
                     val auth = AuthEntity(
-                        token = responseLogin.loginResult.token,
+                        token = responseLogin.loginResult?.token!!,
                         state = true
                     )
 
                     val user = UserEntity(
-                        name = responseLogin.name,
-                        email = responseLogin.email
+                        name = responseLogin.loginResult.name!!,
+                        email = responseLogin.loginResult.email!!
                     )
 
-                    userPreference.setAuth(auth)
-                    authPreference.setUser(user)
+                    userPreference.setUser(user)
+                    authPreference.setAuth(auth)
 
                     emitSource(remoteResponse)
                 }
             }
-            */
-        }
-        catch (e : Exception){
+        } catch (e: Exception) {
             emit(ResultState.Error(e.message.toString()))
         }
     }
@@ -96,20 +91,23 @@ class AuthRepository(
         }
     }
 
-    fun checkAuthState(): LiveData<ResultState<AuthEntity?>> = liveData {
-        emit(ResultState.Loading)
-        try {
-            val auth = authPreference.authFlow.firstOrNull()
+    fun checkAuthState(): LiveData<ResultState<AuthEntity?>> {
+        val authState = MutableLiveData<ResultState<AuthEntity?>>()
+        val mediatorAuthState = MediatorLiveData<ResultState<AuthEntity?>>()
+
+        mediatorAuthState.addSource(authPreference.authFlow.asLiveData()) { auth ->
             if (auth == null) {
-                emit(ResultState.Error("User is null"))
+                authState.value = ResultState.Error("User is null")
             } else {
-                val authState = MutableLiveData<ResultState<AuthEntity?>>()
                 authState.value = ResultState.Success(auth)
-                emitSource(authState)
             }
-        } catch (e: Exception) {
-            emit(ResultState.Error(e.message.toString()))
         }
+
+        mediatorAuthState.addSource(authState) { resultState ->
+            mediatorAuthState.value = resultState
+        }
+
+        return mediatorAuthState
     }
 
     companion object{

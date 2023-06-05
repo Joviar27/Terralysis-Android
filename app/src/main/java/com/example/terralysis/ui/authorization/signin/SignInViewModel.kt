@@ -7,7 +7,9 @@ class SignInViewModel(
     private val authRepository: AuthRepository
 ) : ViewModel() {
     fun signIn(
-        name : String,
-        email : String,
-    ) = authRepository.signIn(name, email)
+        email: String,
+        password : String,
+    ) = authRepository.signIn(email, password)
+
+    fun getAuthData() = authRepository.checkAuthState()
 }
