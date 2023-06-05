@@ -6,15 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.terralysis.R
+import com.example.terralysis.data.ResultState
 import com.example.terralysis.databinding.LayoutProfilePageBinding
 import com.example.terralysis.ui.AuthActivity
+import com.example.terralysis.util.ViewModelFactory
 
 class ProfileFragment : Fragment() {
     private var _binding: LayoutProfilePageBinding? = null
 
     private val binding get() = _binding!!
+
+    private val viewModel: ProfileViewModel by viewModels() {
+        ViewModelFactory.getInstance(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,11 +37,39 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        checkAuth()
         setContent()
         setNavigation()
     }
 
+    private fun checkAuth(){
+        viewModel.getAuthData().observe(viewLifecycleOwner){ result ->
+            when (result){
+                is ResultState.Loading ->{ }
+                is ResultState.Error ->{ }
+                is ResultState.Success -> {
+                    if(result.data?.state == false){
+                        startAuthActivity()
+                    }
+                }
+            }
+        }
+    }
+
     private fun setContent(){
+        viewModel.getUserData().observe(viewLifecycleOwner){ result ->
+            when (result){
+                is ResultState.Loading ->{ }
+                is ResultState.Error ->{ }
+                is ResultState.Success -> {
+                    result.data.let {
+                        binding.tvEmail.text = it?.email
+                        binding.tvUsername.text = it?.name
+                    }
+                }
+            }
+        }
+
         binding.itemBahasa.apply {
             mtrlListItemText.text = resources.getText(R.string.language)
             mtrlListItemSecondaryText.text = "Indonesia"
@@ -59,7 +94,7 @@ class ProfileFragment : Fragment() {
             itemAboutApp.mtrlListItemNavigation.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_profileFragment_to_AboutFragment)
             )
-            btnLogout.setOnClickListener{ /* logout */ }
+            btnLogout.setOnClickListener{ viewModel.logout() }
         }
     }
 

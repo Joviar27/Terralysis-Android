@@ -37,6 +37,7 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        checkAuth()
         binding.apply {
             btnSignin.setOnClickListener {
                 val email = etEmail.text.toString()

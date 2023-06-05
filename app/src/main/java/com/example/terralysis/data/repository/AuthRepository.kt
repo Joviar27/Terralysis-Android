@@ -110,6 +110,10 @@ class AuthRepository(
         return mediatorAuthState
     }
 
+    suspend fun logout() {
+        authPreference.clearAuth()
+    }
+
     companion object{
         @Volatile
         private var instance : AuthRepository? = null
