@@ -48,4 +48,8 @@
     <string name="bantuan">Bantuan</string>
     <string name="about_app">Tentang Aplikasi</string>
 
+    <!--    -->
+    <string name="err_required">Harap diisi</string>
+    <string name="err_invalid_email">Email tidak valid</string>
+
 </resources>

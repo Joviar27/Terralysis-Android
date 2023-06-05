@@ -7,4 +7,7 @@ class HomeViewModel (
     private val authRepository: AuthRepository
     ) : ViewModel() {
         fun getUserData() = authRepository.getUserData()
+
+        fun getAuthData() = authRepository.checkAuthState()
+
 }

@@ -29,7 +29,7 @@ class AuthActivity : AppCompatActivity() {
         if(isSplash){
             navController.graph = navInflater.inflate(R.navigation.nav_graph_splash)
         }else{
-            navController.graph = navInflater.inflate(R.navigation.nav_graph_auth)
+             navController.graph = navInflater.inflate(R.navigation.nav_graph_auth)
         }
     }
 

@@ -27,17 +27,14 @@ class AuthRepository(
         emit(ResultState.Loading)
         try {
             val responseRegister = apiService.signUp(name, email, password)
-
-            /* TODO"Handle the response similar way to the code below"
             when(responseRegister.error){
-                true -> emit(ResultState.Error(responseRegister.message))
-                false ->{
-                    val remoteResponse = MutableLiveData<ResultState<RegisterResponse>>()
+                true -> emit(ResultState.Error(responseRegister.message?:"Registrasi Gagal"))
+                else ->{
+                    val remoteResponse = MutableLiveData<ResultState<SignUpResponse>>()
                     remoteResponse.value = ResultState.Success(responseRegister)
                     emitSource(remoteResponse)
                 }
             }
-             */
         } catch (e: Exception) {
             emit(ResultState.Error(e.message.toString()))
         }
