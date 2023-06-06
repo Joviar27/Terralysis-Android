@@ -2,7 +2,6 @@ package com.example.terralysis.data.remote.retrofit
 
 import com.example.terralysis.data.remote.response.*
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiService {
@@ -22,21 +21,27 @@ interface ApiService {
         @Field("password") password: String
     ) : SignInResponse
 
+    //Get all scan history
+    @GET("images/{userId}")
+    suspend fun getScanHistory(
+        @Path ("userId") userId: String
+    ) : HistoryResponse
+
+    //TODO "MASIH DUMMY"
     //Used when sending pic to server to analyze
     @Multipart
-    @POST("Add Route here")
+    @POST("images")
     suspend fun scanRequest(
         @Part file: MultipartBody.Part,
-        @Part("description") description: RequestBody,
     ): ScanRequestResponse
 
-    //Get the individual detail of scan result
-    @GET("Add Route Here")
-    suspend fun getScanResult(
-        //TODO "Add path/query"
-    ) : ScanResultResponse
 
-    //Get all scan history
-    @GET("Add Route Here")
-    suspend fun getScanHistory() : HistoryResponse
+    /*TODO "MASIH DUMMY"
+    //Get the individual detail of scan result
+    @GET("images/{userId}/{imageId}")
+    suspend fun getScanResult(
+        @Path ("userId") userId: String,
+        @Path ("imageId") imageId: String
+    ) : ScanResultResponse
+     */
 }

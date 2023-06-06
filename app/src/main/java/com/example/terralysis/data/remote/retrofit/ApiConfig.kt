@@ -1,7 +1,5 @@
 package com.example.terralysis.data.remote.retrofit
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import com.example.terralysis.BuildConfig
 import com.example.terralysis.data.local.datastore.AuthPreference
 import kotlinx.coroutines.flow.firstOrNull
@@ -14,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
 
-    private var BASE_URL : String = "https://terralysis-api-v2-l22usupt4a-uc.a.run.app"
+    private var BASE_URL : String = "https://terralysis-api-v2-l22usupt4a-uc.a.run.app/"
 
     fun getApiService(authPreference: AuthPreference) : ApiService {
 
