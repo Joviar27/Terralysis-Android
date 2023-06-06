@@ -2,7 +2,6 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -16,6 +15,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:contentDescription="@string/logo_terralysis"
             android:src="@drawable/logo_terralysis"
             android:layout_marginVertical="16dp"
             android:layout_gravity="center"/>
@@ -42,10 +42,7 @@
             android:layout_marginVertical="16dp"
             android:padding="16dp"
             android:background="@drawable/background_rounded12"
-            android:backgroundTint="?attr/colorSurfaceVariant"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_desc">
+            android:backgroundTint="?attr/colorSurfaceVariant">
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_aboutApp"
                 android:layout_width="match_parent"
@@ -62,10 +59,7 @@
             android:orientation="vertical"
             android:padding="16dp"
             android:background="@drawable/background_rounded12"
-            android:backgroundTint="?attr/colorSecondaryContainer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_profile">
+            android:backgroundTint="?attr/colorSecondaryContainer">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_linkToRepo"

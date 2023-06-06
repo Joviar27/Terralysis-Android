@@ -13,4 +13,11 @@
         android:layout_marginBottom="16dp"
         android:layout_marginHorizontal="16dp"
         tools:listitem="@layout/item_riwayat"/>
+
+    <ProgressBar
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_gravity="center"/>
 </FrameLayout>

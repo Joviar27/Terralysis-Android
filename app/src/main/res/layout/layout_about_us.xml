@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_profile"
+        android:id="@+id/iv_team"
         app:shapeAppearance="?attr/shapeAppearanceCornerMedium"
         tools:srcCompat="@tools:sample/avatars"
         android:layout_width="match_parent"

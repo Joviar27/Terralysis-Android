@@ -1,17 +1,14 @@
-package com.example.terralysis
+package com.example.terralysis.ui
 
 import android.os.Bundle
 import android.view.View
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.terralysis.R
 import com.example.terralysis.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFragment.navController
 
         navView.setupWithNavController(navController)
@@ -50,6 +48,11 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val listFrament =
-            listOf(R.id.navigation_home, R.id.navigation_scan, R.id.navigation_history, R.id.navigation_profile)
+            listOf(
+                R.id.navigation_home,
+                R.id.navigation_scan,
+                R.id.navigation_history,
+                R.id.navigation_profile
+            )
     }
 }

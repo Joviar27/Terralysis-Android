@@ -1,4 +1,4 @@
-package com.example.terralysis.ui.splashscreen
+package com.example.terralysis.ui.authorization.splashscreen
 
 import androidx.lifecycle.ViewModel
 import com.example.terralysis.data.repository.AuthRepository

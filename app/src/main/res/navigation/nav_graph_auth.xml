@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_auth"
+    app:startDestination="@id/navigation_welcome">
+    <fragment
+        android:id="@+id/navigation_signup"
+        android:name="com.example.terralysis.ui.authorization.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/layout_signup">
+        <action
+            android:id="@+id/action_signUpFragment_to_signInFragment"
+            app:destination="@id/navigation_signin" />
+        <action
+            android:id="@+id/action_signUpFragment_to_welcomeFragment"
+            app:destination="@id/navigation_welcome" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_welcome"
+        android:name="com.example.terralysis.ui.authorization.welcome.WelcomeFragment"
+        android:label="WelcomeFragment"
+        tools:layout="@layout/layout_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_signInFragment"
+            app:destination="@id/navigation_signin" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_signUpFragment"
+            app:destination="@id/navigation_signup" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_signin"
+        android:name="com.example.terralysis.ui.authorization.signin.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/layout_signin">
+        <action
+            android:id="@+id/action_signInFragment_to_welcomeFragment"
+            app:destination="@id/navigation_welcome" />
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/navigation_welcome" />
+    </fragment>
+</navigation>

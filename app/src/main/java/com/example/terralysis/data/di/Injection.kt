@@ -1,8 +1,6 @@
 package com.example.terralysis.data.di
 
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.terralysis.data.local.datastore.AuthPreference
 import com.example.terralysis.data.local.datastore.UserPreference
@@ -20,27 +18,24 @@ object Injection {
         val authPreference = provideAuthPreference(context)
 
         val apiService = ApiConfig.getApiService(authPreference)
-        return AuthRepository.getInstance(apiService,authPreference, userPreference)
+        return AuthRepository.getInstance(apiService, userPreference, authPreference)
     }
 
     fun provideScanRepository(context: Context) : ScanRepository{
-        val userPreference = provideUserPreference(context)
         val authPreference = provideAuthPreference(context)
-
         val scanDatabase= ScanDatabase.getDatabase(context)
-        val scanDao = scanDatabase.scanDao()
 
         val apiService = ApiConfig.getApiService(authPreference)
-        return ScanRepository.getInstance(apiService, scanDao, userPreference)
+        return ScanRepository.getInstance(apiService, scanDatabase)
     }
 
     fun provideAuthPreference(context: Context) : AuthPreference{
         val dataStore = context.dataStore
-        return AuthPreference(dataStore)
+        return AuthPreference.getInstance(dataStore)
     }
 
     fun provideUserPreference(context: Context) : UserPreference {
         val dataStore = context.dataStore
-        return UserPreference(dataStore)
+        return UserPreference.getInstance(dataStore)
     }
 }

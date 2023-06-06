@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_profile"
+            android:id="@+id/iv_detail"
             app:shapeAppearance="?attr/shapeAppearanceCornerMedium"
             tools:srcCompat="@tools:sample/avatars"
             android:layout_width="match_parent"
@@ -37,13 +37,15 @@
             android:backgroundTint="?attr/colorSecondaryContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_profile">
+            app:layout_constraintTop_toBottomOf="@id/iv_detail">
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_detail_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance.Material3.HeadlineMedium"
                 tools:text="Jenis Tanah"/>
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_detail_shortDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -67,6 +69,7 @@
                 style="@style/TextAppearance.Material3.TitleLarge"
                 tools:text="Sub Detail 1"/>
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_detail_longDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -85,6 +88,7 @@
                 tools:text="Sub Detail 2"/>
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
+                android:id="@+id/tv_detail_longDesc2"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 style="@style/TextAppearance.Material3.BodyMedium"

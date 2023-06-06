@@ -13,9 +13,9 @@ interface ScanDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertScan(story : List<ScanEntity>)
 
-    @Query("SELECT * from stories")
+    @Query("SELECT * from scans")
     fun getScanHistory() : LiveData<List<ScanEntity>>
 
-    @Query("DELETE FROM stories")
+    @Query("DELETE FROM scans")
     suspend fun deleteAll()
 }

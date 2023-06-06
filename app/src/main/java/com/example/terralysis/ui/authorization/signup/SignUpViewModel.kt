@@ -1,13 +1,14 @@
-package com.example.terralysis.ui.signin
+package com.example.terralysis.ui.authorization.signup
 
 import androidx.lifecycle.ViewModel
 import com.example.terralysis.data.repository.AuthRepository
 
-class SignInViewModel(
+class SignUpViewModel(
     private val authRepository: AuthRepository
 ) : ViewModel() {
-    fun signIn(
+    fun signUp(
         name : String,
         email : String,
-    ) = authRepository.signIn(name, email)
+        pass : String
+    ) = authRepository.signUp(name, email, pass)
 }

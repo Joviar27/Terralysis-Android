@@ -2,24 +2,24 @@ package com.example.terralysis.data.local.datastore
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.example.terralysis.data.local.entity.AuthEntity
 import com.example.terralysis.data.local.entity.UserEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class UserPreference(private val dataStore: DataStore<Preferences>){
 
+    private val ID_KEY = stringPreferencesKey("id")
     private val EMAIL_KEY = stringPreferencesKey("email")
     private val NAME_KEY = stringPreferencesKey("name")
 
     val userFlow: Flow<UserEntity> = dataStore.data
         .map { preference ->
             UserEntity(
-                preference[NAME_KEY] ?: "",
-                preference[EMAIL_KEY] ?: "",
+                name = preference[NAME_KEY] ?: "",
+                email = preference[EMAIL_KEY] ?: "",
+                userId = preference[ID_KEY] ?: ""
             )
         }
 

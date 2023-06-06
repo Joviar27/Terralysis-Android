@@ -47,5 +47,24 @@
     <string name="language">Bahasa</string>
     <string name="bantuan">Bantuan</string>
     <string name="about_app">Tentang Aplikasi</string>
+    <string name="keluar">Keluar</string>
 
+    <!--  Camera  -->
+    <string name="failed_capture_message">Gagal mengambil gambar</string>
+    <string name="failed_upload_message">Gagal menganalisa gambar</string>
+    <string name="failed_gallery_message">Gagal mengambil gambar dari gallery</string>
+    <string name="process_message">Gambar sedang dianalisa…</string>
+    <string name="chooser">Pilih gambar</string>
+    <string name="take_picture">Ambil gambar</string>
+    <string name="switch_camera">Putar kamera</string>
+    <string name="back">Kembali</string>
+    <string name="upload_from_gallery">Unggah gambar dari Gallery</string>
+
+    <!-- Error   -->
+    <string name="err_required">Harap diisi</string>
+    <string name="err_invalid_email">Email tidak valid</string>
+
+    <!-- Bantuan   -->
+    <string name="name">Nama \t:\t %s</string>
+    <string name="email">Email \t\t:\t %s</string>
 </resources>
