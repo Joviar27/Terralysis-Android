@@ -67,10 +67,8 @@ class SignUpFragment : Fragment() {
                         }
                         is ResultState.Success -> {
                             binding.pbLoading.visibility = View.GONE
-                            if(result.data.error == false){
-                                Toast.makeText(requireContext(), result.data.message, Toast.LENGTH_SHORT).show()
-                                findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
-                            }
+                            Toast.makeText(requireContext(), result.data, Toast.LENGTH_SHORT).show()
+                            findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
                         }
                     }
                 }

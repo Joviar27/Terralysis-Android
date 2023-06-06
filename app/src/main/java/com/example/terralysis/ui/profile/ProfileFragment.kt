@@ -15,9 +15,7 @@ import com.example.terralysis.databinding.LayoutProfileBinding
 import com.example.terralysis.util.ViewModelFactory
 import java.util.*
 import com.example.terralysis.data.ResultState
-import com.example.terralysis.databinding.LayoutProfilePageBinding
 import com.example.terralysis.ui.AuthActivity
-import com.example.terralysis.util.ViewModelFactory
 
 class ProfileFragment : Fragment() {
     private var _binding: LayoutProfileBinding? = null
@@ -50,7 +48,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun checkAuth(){
-        viewModel.getAuthData().observe(viewLifecycleOwner){ result ->
+        viewModel?.getAuthData()?.observe(viewLifecycleOwner){ result ->
             when(result){
                 is ResultState.Loading -> {}
                 is ResultState.Error -> {
@@ -105,7 +103,7 @@ class ProfileFragment : Fragment() {
             itemAboutApp.mtrlListItemNavigation.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_profileFragment_to_AboutFragment)
             )
-            btnLogout.setOnClickListener{ viewModel.logout() }
+            btnLogout.setOnClickListener{ viewModel?.logout() }
         }
     }
 
