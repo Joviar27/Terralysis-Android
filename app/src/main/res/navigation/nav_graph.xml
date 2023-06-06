@@ -32,7 +32,7 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.terralysis.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/layout_profile_page">
+        tools:layout="@layout/layout_profile">
         <action
             android:id="@+id/action_profileFragment_to_bantuanFragment"
             app:destination="@id/navigation_bantuan" />
@@ -46,7 +46,7 @@
         android:id="@+id/navigation_bantuan"
         android:name="com.example.terralysis.ui.bantuan.BantuanFragment"
         android:label="@string/title_bantuan"
-        tools:layout="@layout/layout_bantuan_page" >
+        tools:layout="@layout/layout_help" >
         <action
             android:id="@+id/action_navigation_bantuan_to_navigation_profile"
             app:destination="@id/navigation_profile" />
@@ -71,7 +71,7 @@
         android:id="@+id/navigation_detail"
         android:name="com.example.terralysis.ui.detail.DetailFragment"
         android:label="@string/title_detail"
-        tools:layout="@layout/layout_detail_page" >
+        tools:layout="@layout/layout_detail" >
         <action
             android:id="@+id/action_navigation_detail_to_navigation_history"
             app:destination="@id/navigation_history" />

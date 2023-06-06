@@ -61,7 +61,7 @@
         android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Keluar"
+        android:text="@string/keluar"
         android:backgroundTint="?attr/colorSecondary"
         android:textSize="16sp"
         android:layout_marginTop="64dp"
