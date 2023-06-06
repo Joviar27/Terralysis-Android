@@ -55,7 +55,7 @@
     <fragment
         android:id="@+id/navigation_scan"
         android:name="com.example.terralysis.ui.camera.CameraFragment"
-        tools:layout="@layout/activity_camera">
+        tools:layout="@layout/layout_camera">
         <action
             android:id="@+id/action_CameraFragment_to_DetailFragment"
             app:destination="@id/navigation_detail" />
@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_navigation_detail_to_navigation_history"
             app:destination="@id/navigation_history" />
+        <argument
+            android:name="scanDetail"
+            app:argType="com.example.terralysis.data.local.entity.ScanEntity" />
     </fragment>
 
     <fragment
