@@ -8,15 +8,15 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
+import com.example.terralysis.databinding.LayoutHelpBinding
 import com.example.terralysis.R
 import com.example.terralysis.data.teamCC
 import com.example.terralysis.data.teamMD
 import com.example.terralysis.data.teamML
 import com.example.terralysis.databinding.ItemDevTeamBinding
-import com.example.terralysis.databinding.LayoutBantuanPageBinding
 
 class BantuanFragment : Fragment() {
-    private var _binding: LayoutBantuanPageBinding? = null
+    private var _binding: LayoutHelpBinding? = null
 
     private val binding get() = _binding!!
 
@@ -26,7 +26,7 @@ class BantuanFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = LayoutBantuanPageBinding.inflate(inflater, container, false)
+        _binding = LayoutHelpBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
