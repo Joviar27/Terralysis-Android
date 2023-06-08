@@ -47,23 +47,17 @@ class ProfileFragment : Fragment() {
         setNavigation()
     }
 
-    private fun checkAuth(){
-        viewModel?.getAuthData()?.observe(viewLifecycleOwner){ result ->
-            when(result){
-                is ResultState.Loading -> {}
-                is ResultState.Error -> {
-                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
-                }
-                is ResultState.Success -> if(result.data?.state == false) startAuthActivity()
-            }
+    private fun checkAuth() {
+        viewModel?.getAuthData()?.observe(viewLifecycleOwner) { result ->
+            if (!result.state) startAuthActivity()
         }
     }
 
-    private fun setContent(){
+    private fun setContent() {
         //Temp - until found default pic
         binding?.ivProfile?.setImageResource(R.color.secondary)
 
-        viewModel?.getUserData()?.observe(viewLifecycleOwner){ user ->
+        viewModel?.getUserData()?.observe(viewLifecycleOwner) { user ->
             binding?.tvUsername?.text = user.name
             binding?.tvEmail?.text = user.email
         }
@@ -85,17 +79,18 @@ class ProfileFragment : Fragment() {
     }
 
     private fun getLocaleLanguage(): String {
-        val currentLocale: Locale = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            Resources.getSystem().configuration.locales[0]
-        } else {
-            @Suppress("Deprecation")
-            Resources.getSystem().configuration.locale
-        }
+        val currentLocale: Locale =
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                Resources.getSystem().configuration.locales[0]
+            } else {
+                @Suppress("Deprecation")
+                Resources.getSystem().configuration.locale
+            }
 
         return currentLocale.language
     }
 
-    private fun setNavigation(){
+    private fun setNavigation() {
         binding?.apply {
             itemBantuan.mtrlListItemNavigation.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_profileFragment_to_bantuanFragment)
@@ -103,11 +98,11 @@ class ProfileFragment : Fragment() {
             itemAboutApp.mtrlListItemNavigation.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_profileFragment_to_AboutFragment)
             )
-            btnLogout.setOnClickListener{ viewModel?.logout() }
+            btnLogout.setOnClickListener { viewModel?.logout() }
         }
     }
 
-    private fun startAuthActivity(){
+    private fun startAuthActivity() {
         val authIntent = Intent(requireContext(), AuthActivity::class.java)
         authIntent.putExtra(AuthActivity.isSplash, false)
         startActivity(authIntent)
@@ -115,8 +110,8 @@ class ProfileFragment : Fragment() {
     }
 
     private fun obtainViewModel() {
-        val factory : ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
-        val viewModel : ProfileViewModel by viewModels {
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
+        val viewModel: ProfileViewModel by viewModels {
             factory
         }
         _viewModel = viewModel

@@ -140,23 +140,8 @@ class AuthRepository(
     }
      */
 
-    fun checkAuthState(): LiveData<ResultState<AuthEntity?>> {
-        val authState = MutableLiveData<ResultState<AuthEntity?>>()
-        val mediatorAuthState = MediatorLiveData<ResultState<AuthEntity?>>()
-
-        mediatorAuthState.addSource(authPreference.authFlow.asLiveData()) { auth ->
-            if (auth == null) {
-                authState.value = ResultState.Error("User is null")
-            } else {
-                authState.value = ResultState.Success(auth)
-            }
-        }
-
-        mediatorAuthState.addSource(authState) { resultState ->
-            mediatorAuthState.value = resultState
-        }
-
-        return mediatorAuthState
+    fun checkAuthState(): Flow<AuthEntity> {
+        return authPreference.authFlow
     }
 
     suspend fun logout() {
