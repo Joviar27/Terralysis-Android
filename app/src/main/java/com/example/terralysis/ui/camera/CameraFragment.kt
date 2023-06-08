@@ -45,7 +45,7 @@ class CameraFragment : Fragment() {
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
 
-    private var file : File? = null
+    private var file: File? = null
 
     private val requestPermissionsLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -69,8 +69,7 @@ class CameraFragment : Fragment() {
                 file = myFile
                 uploadImage()
             }
-        }
-        else{
+        } else {
             showToast(resources.getString(R.string.failed_gallery_message))
         }
     }
@@ -120,7 +119,7 @@ class CameraFragment : Fragment() {
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(
-                     this,
+                    this,
                     cameraSelector,
                     preview,
                     imageCapture
@@ -153,6 +152,7 @@ class CameraFragment : Fragment() {
                     file = photoFile
                     uploadImage()
                 }
+
                 override fun onError(exception: ImageCaptureException) {
                     showToast(resources.getString(R.string.failed_capture_message))
                 }
@@ -168,7 +168,7 @@ class CameraFragment : Fragment() {
     }
 
     private fun uploadImage() {
-        if(file != null){
+        if (file != null) {
             val myFile = file as File
 
             //For later on if need compressing
@@ -176,37 +176,36 @@ class CameraFragment : Fragment() {
 
             val requestImageFile = myFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
 
-            val imageMultipart : MultipartBody.Part = MultipartBody.Part.createFormData(
-                "photo",
+            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                "image",
                 myFile.name,
                 requestImageFile
             )
-            viewModel?.requestScan(imageMultipart)
-            getScanResult()
-        }
-    }
-
-    private fun getScanResult(){
-        viewModel?.scan?.observe(viewLifecycleOwner){ result ->
-            when(result){
-                is ResultState.Loading -> {
-                    showLoading(true)
-                }
-                is ResultState.Error ->{
-                    showLoading(false)
-                    showToast(resources.getString(R.string.failed_upload_message))
-                    Log.e(TAG, result.error)
-                }
-                is ResultState.Success ->{
-                    showLoading(false)
-                    //Send image id to detail page
-                    navigateToDetail(result.data)
-                }
+            viewModel?.requestScan(imageMultipart)?.observe(viewLifecycleOwner) {
+                handleScanResult(it)
             }
         }
     }
 
-    private fun showLoading(isLoading : Boolean){
+    private fun handleScanResult(result: ResultState<ScanEntity>) {
+        when (result) {
+            is ResultState.Loading -> {
+                showLoading(true)
+            }
+            is ResultState.Error -> {
+                showLoading(false)
+                showToast(resources.getString(R.string.failed_upload_message))
+                Log.e(TAG, result.error)
+            }
+            is ResultState.Success -> {
+                showLoading(false)
+                //Send image id to detail page
+                navigateToDetail(result.data)
+            }
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
         binding?.progressContainer?.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding?.progressMessage?.text = resources.getString(R.string.process_message)
     }
@@ -220,15 +219,15 @@ class CameraFragment : Fragment() {
     }
 
     private fun obtainViewModel() {
-        val factory : ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
-        val viewModel : CameraViewModel by viewModels {
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
+        val viewModel: CameraViewModel by viewModels {
             factory
         }
         _viewModel = viewModel
     }
 
     //temp - navigate to detail
-    private fun navigateToDetail(scan : ScanEntity) {
+    private fun navigateToDetail(scan: ScanEntity) {
         val toDetailScan = CameraFragmentDirections.actionCameraFragmentToDetailFragment(scan)
         toDetailScan.scanDetail = scan
         view?.findNavController()?.navigate(toDetailScan)

@@ -24,6 +24,16 @@ fun createTempFile(context: Context): File {
     return File.createTempFile(timeStamp, ".jpg", storageDir)
 }
 
+fun dateFormater(date: String): String {
+    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+    inputFormat.timeZone = TimeZone.getTimeZone("GMT")
+    val date = inputFormat.parse(date)
+
+    val outputFormat = SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.getDefault())
+    outputFormat.timeZone = TimeZone.getTimeZone("GMT")
+    return outputFormat.format(date)
+}
+
 fun rotateImage(imagePath: String){
     val bitmap = BitmapFactory.decodeFile(imagePath)
     val exif = ExifInterface(imagePath)

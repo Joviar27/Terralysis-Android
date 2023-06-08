@@ -27,6 +27,7 @@ class UserPreference(private val dataStore: DataStore<Preferences>){
         dataStore.edit {
             it[NAME_KEY] = userEntity.name
             it[EMAIL_KEY] = userEntity.email
+            it[ID_KEY] = userEntity.userId
         }
     }
 

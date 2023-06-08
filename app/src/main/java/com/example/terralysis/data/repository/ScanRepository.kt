@@ -10,6 +10,7 @@ import com.example.terralysis.data.local.room.ScanDatabase
 import com.example.terralysis.data.remote.response.HistoryResponse
 import com.example.terralysis.data.remote.response.ScanRequestResponse
 import com.example.terralysis.data.remote.retrofit.ApiService
+import com.example.terralysis.util.dateFormater
 import okhttp3.MultipartBody
 
 class ScanRepository(
@@ -43,7 +44,7 @@ class ScanRepository(
         return responseHistory.data.map { response ->
             ScanEntity(
                 id = response.imageId,
-                timestamp = response.createdAt,
+                timestamp = dateFormater(response.createdAt),
                 uri = response.url,
                 //Waiting for API to be completed
                 name = "Dummy sambil nunggu API",
@@ -76,22 +77,17 @@ class ScanRepository(
         imageMultipart: MultipartBody.Part,
     ): LiveData<ResultState<ScanEntity>> = liveData {
         emit(ResultState.Loading)
-        try{
+        try {
             val response = submitScanRequest(imageMultipart)
 
             when(response.error){
                 true -> emit(ResultState.Error(response.message))
                 false -> {
-                    val scanResult = convertResponseToScanEntities(response)
-
-                    val remoteResponse = MutableLiveData<ResultState<ScanEntity>>()
-                    remoteResponse.value = ResultState.Success(scanResult)
-
-                    emitSource(remoteResponse)
+                    val result = convertResponseToScanEntities(response)
+                    emit(ResultState.Success(result))
                 }
             }
-        }
-        catch (e : Exception){
+        } catch (e: Exception) {
             emit(ResultState.Error(e.message.toString()))
         }
     }
@@ -103,7 +99,7 @@ class ScanRepository(
     private fun convertResponseToScanEntities(scanResult : ScanRequestResponse): ScanEntity {
         return ScanEntity(
                 id = scanResult.data.imageId,
-                timestamp = scanResult.data.createdAt,
+                timestamp = dateFormater(scanResult.data.createdAt),
                 uri = scanResult.data.url,
                 //Waiting for API to be completed
                 name = "Dummy sambil nunggu API",

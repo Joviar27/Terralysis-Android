@@ -47,19 +47,9 @@ class SignInFragment : Fragment() {
         }
     }
 
-    private fun checkAuth(){
-        viewModel.getAuthData().observe(viewLifecycleOwner){ result ->
-            when(result){
-                is ResultState.Loading -> {}
-                is ResultState.Error -> {
-                    binding.pbLoading.visibility = View.GONE
-                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
-                }
-                is ResultState.Success -> {
-                    binding.pbLoading.visibility = View.GONE
-                    if(result.data?.state == true) startMainActivity()
-                }
-            }
+    private fun checkAuth() {
+        viewModel.getAuthData().observe(viewLifecycleOwner) { result ->
+            if (result.state) startMainActivity()
         }
     }
 
@@ -77,7 +67,8 @@ class SignInFragment : Fragment() {
                         is ResultState.Loading -> binding.pbLoading.visibility = View.VISIBLE
                         is ResultState.Error -> {
                             binding.pbLoading.visibility = View.GONE
-                            Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT)
+                                .show()
                         }
                         is ResultState.Success -> binding.pbLoading.visibility = View.GONE
                     }
@@ -86,7 +77,8 @@ class SignInFragment : Fragment() {
         }
     }
 
-    private fun isValidEmail(email: String) = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    private fun isValidEmail(email: String) =
+        android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
     private fun startMainActivity() {
         val intent = Intent(requireContext(), MainActivity::class.java)

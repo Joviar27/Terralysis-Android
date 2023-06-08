@@ -11,14 +11,9 @@ import okhttp3.MultipartBody
 class CameraViewModel(
     private val scanRepository: ScanRepository
 ) : ViewModel() {
-
-    val _scan = MutableLiveData<ResultState<ScanEntity>>()
-    val scan : LiveData<ResultState<ScanEntity>>
-        get() = _scan
-
     fun requestScan(
         imageMultipart : MultipartBody.Part,
-    ) {
-        _scan.postValue(scanRepository.addScanRequest(imageMultipart).value)
+    ): LiveData<ResultState<ScanEntity>>  {
+        return scanRepository.addScanRequest(imageMultipart)
     }
 }

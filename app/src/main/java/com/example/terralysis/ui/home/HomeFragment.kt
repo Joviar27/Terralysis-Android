@@ -45,17 +45,14 @@ class HomeFragment : Fragment() {
 
     private fun checkAuth() {
         viewModel.getAuthData().observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is ResultState.Loading -> {}
-                is ResultState.Error -> {}
-                is ResultState.Success -> if (result.data?.state == false) startAuthActivity()
-            }
+            if (!result.state) startAuthActivity()
         }
     }
 
     private fun setUser() {
         viewModel.getUserData().observe(viewLifecycleOwner) { result ->
-            binding.tvWelcomeName.text = resources.getString(R.string.home_welcome_message, result.name)
+            binding.tvWelcomeName.text =
+                resources.getString(R.string.home_welcome_message, result.name)
         }
     }
 
