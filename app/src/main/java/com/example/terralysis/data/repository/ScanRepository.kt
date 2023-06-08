@@ -76,22 +76,17 @@ class ScanRepository(
         imageMultipart: MultipartBody.Part,
     ): LiveData<ResultState<ScanEntity>> = liveData {
         emit(ResultState.Loading)
-        try{
+        try {
             val response = submitScanRequest(imageMultipart)
 
             when(response.error){
                 true -> emit(ResultState.Error(response.message))
                 false -> {
-                    val scanResult = convertResponseToScanEntities(response)
-
-                    val remoteResponse = MutableLiveData<ResultState<ScanEntity>>()
-                    remoteResponse.value = ResultState.Success(scanResult)
-
-                    emitSource(remoteResponse)
+                    val result = convertResponseToScanEntities(response)
+                    emit(ResultState.Success(result))
                 }
             }
-        }
-        catch (e : Exception){
+        } catch (e: Exception) {
             emit(ResultState.Error(e.message.toString()))
         }
     }
