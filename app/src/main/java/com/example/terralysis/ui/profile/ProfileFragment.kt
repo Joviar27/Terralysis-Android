@@ -1,21 +1,20 @@
 package com.example.terralysis.ui.profile
 
-import android.content.res.Resources
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.terralysis.R
 import com.example.terralysis.databinding.LayoutProfileBinding
+import com.example.terralysis.ui.AuthActivity
 import com.example.terralysis.util.ViewModelFactory
 import java.util.*
-import com.example.terralysis.data.ResultState
-import com.example.terralysis.ui.AuthActivity
 
 class ProfileFragment : Fragment() {
     private var _binding: LayoutProfileBinding? = null
@@ -92,6 +91,9 @@ class ProfileFragment : Fragment() {
 
     private fun setNavigation() {
         binding?.apply {
+            itemBahasa.mtrlListItemNavigation.setOnClickListener{
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            }
             itemBantuan.mtrlListItemNavigation.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_profileFragment_to_bantuanFragment)
             )
