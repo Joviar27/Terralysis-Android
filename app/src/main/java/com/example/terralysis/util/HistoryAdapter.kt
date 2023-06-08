@@ -39,9 +39,9 @@ class HistoryAdapter (
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val user = getItem(position)
-        if(user!=null){
-            holder.bind(user)
+        val scanItem = getItem(position)
+        if(scanItem!=null){
+            holder.bind(scanItem)
         }
     }
 

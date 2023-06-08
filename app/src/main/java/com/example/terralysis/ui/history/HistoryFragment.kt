@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.terralysis.data.ResultState
 import com.example.terralysis.data.local.entity.ScanEntity
 import com.example.terralysis.databinding.LayoutHistoryBinding
@@ -41,14 +42,24 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setRVComponent()
+
+        viewModel?.getUserData()?.observe(viewLifecycleOwner){ user ->
+            getHistory(user.userId)
+        }
+    }
+
+    private fun setRVComponent(){
         _historyAdapter = HistoryAdapter(object : HistoryAdapter.OnItemClicked{
             override fun onClicked(scanDetail: ScanEntity) {
                 navigateToDetail(scanDetail)
             }
         })
 
-        viewModel?.getUserData()?.observe(viewLifecycleOwner){ user ->
-            getHistory(user.userId)
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding?.rvRiwayat?.apply {
+            adapter = historyAdapter
+            setLayoutManager(layoutManager)
         }
     }
 
