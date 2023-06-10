@@ -14,6 +14,7 @@ import com.example.terralysis.R
 import com.example.terralysis.databinding.LayoutProfileBinding
 import com.example.terralysis.ui.AuthActivity
 import com.example.terralysis.util.ViewModelFactory
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
 
 class ProfileFragment : Fragment() {
@@ -42,7 +43,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         checkAuth()
-        setContent()
+        setupView()
         setNavigation()
     }
 
@@ -52,7 +53,7 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun setContent() {
+    private fun setupView() {
         //Temp - until found default pic
         binding?.ivProfile?.setImageResource(R.color.secondary)
 
@@ -65,11 +66,13 @@ class ProfileFragment : Fragment() {
             mtrlListItemText.text = resources.getText(R.string.language)
             mtrlListItemSecondaryText.text = getLocaleLanguage()
         }
+
         binding?.itemBantuan?.apply {
             mtrlListItemIcon.setImageResource(R.drawable.outline_contact_support_24)
-            mtrlListItemText.text = resources.getText(R.string.bantuan)
+            mtrlListItemText.text = resources.getText(R.string.help)
             mtrlListItemSecondaryText.visibility = View.GONE
         }
+
         binding?.itemAboutApp?.apply {
             mtrlListItemIcon.setImageResource(R.drawable.outline_info_24)
             mtrlListItemText.text = resources.getText(R.string.about_app)
@@ -100,8 +103,21 @@ class ProfileFragment : Fragment() {
             itemAboutApp.mtrlListItemNavigation.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_profileFragment_to_AboutFragment)
             )
-            btnLogout.setOnClickListener { viewModel?.logout() }
+            btnLogout.setOnClickListener { showConfirmLogout() }
         }
+    }
+
+    private fun showConfirmLogout(){
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.logout))
+            .setMessage(resources.getString(R.string.confirm_logout))
+            .setNegativeButton(resources.getString(R.string.negative)) { dialog, _->
+                dialog.dismiss()
+            }
+            .setPositiveButton(resources.getString(R.string.positive)) { _, _ ->
+                viewModel?.logout()
+            }
+            .show()
     }
 
     private fun startAuthActivity() {
