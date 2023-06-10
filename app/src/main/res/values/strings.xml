@@ -8,8 +8,8 @@
     <!-- Sign In Page   -->
     <string name="signin_welcome_to">Selamat datang di</string>
     <string name="signin_welcome_message">Temukan dan identifikasi jenis tanah dengan mudah dan akurat melalui pemindaian gambar</string>
-    <string name="masuk">Masuk</string>
-    <string name="daftar">Daftar</string>
+    <string name="signin">Masuk</string>
+    <string name="signup">Daftar</string>
 
     <!-- Home Page   -->
     <string name="home_welcome_message">Selamat datang,\n%s</string>
@@ -45,9 +45,9 @@
 
     <!-- Profil  -->
     <string name="language">Bahasa</string>
-    <string name="bantuan">Bantuan</string>
+    <string name="help">Bantuan</string>
     <string name="about_app">Tentang Aplikasi</string>
-    <string name="keluar">Keluar</string>
+    <string name="logout">Keluar</string>
 
     <!--  Camera  -->
     <string name="failed_capture_message">Gagal mengambil gambar</string>
@@ -60,11 +60,24 @@
     <string name="back">Kembali</string>
     <string name="upload_from_gallery">Unggah gambar dari Gallery</string>
 
-    <!-- Error   -->
-    <string name="err_required">Harap diisi</string>
+    <!-- TextView Error   -->
+    <string name="err_required">Harus diisi</string>
     <string name="err_invalid_email">Email tidak valid</string>
+    <string name="err_invalid_pass_1">Minimal 8 karakter</string>
+    <string name="err_invalid_pass_2">Tidak boleh ada spasi</string>
+
+    <!-- Toast   -->
+    <string name="signin_failed">Gagal untuk masuk, silahkan coba lagi</string>
+    <string name="signup_failed">Gagal mendaftarkan akun, silahkan coba lagi</string>
+    <string name="signin_succcess">Anda telah masuk</string>
+    <string name="signup_succcess">Akun berhasil dibuat, silahkan masuk</string>
 
     <!-- Bantuan   -->
-    <string name="name">Nama \t:\t %s</string>
-    <string name="email">Email \t\t:\t %s</string>
+    <string name="name">Nama\t:\t %s</string>
+    <string name="email">Email\t:\t %s</string>
+
+    <!-- Dialog  -->
+    <string name="confirm_logout">Anda yakin ingin keluar?</string>
+    <string name="positive">Ya</string>
+    <string name="negative">Tidak</string>
 </resources>
