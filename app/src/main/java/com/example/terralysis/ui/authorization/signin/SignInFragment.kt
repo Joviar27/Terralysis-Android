@@ -1,6 +1,5 @@
 package com.example.terralysis.ui.authorization.signin
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.navigation.findNavController
 import com.example.terralysis.R
 import com.example.terralysis.data.ResultState
 import com.example.terralysis.databinding.LayoutSigninBinding
-import com.example.terralysis.ui.MainActivity
 import com.example.terralysis.util.ViewModelFactory
 
 class SignInFragment : Fragment() {
@@ -45,7 +43,7 @@ class SignInFragment : Fragment() {
 
     private fun checkAuth() {
         viewModel?.getAuthData()?.observe(viewLifecycleOwner) { result ->
-            if (result.state) startMainActivity()
+            if (result.state) view?.findNavController()?.navigate(R.id.action_navigation_signin_to_navigation_home)
         }
     }
 
@@ -105,12 +103,6 @@ class SignInFragment : Fragment() {
 
     private fun isValidEmail(email: String) =
         android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-
-    private fun startMainActivity() {
-        val intent = Intent(requireContext(), MainActivity::class.java)
-        startActivity(intent)
-        requireActivity().finish()
-    }
 
     private fun obtainViewModel() {
         val factory : ViewModelFactory = ViewModelFactory.getInstance(requireActivity())

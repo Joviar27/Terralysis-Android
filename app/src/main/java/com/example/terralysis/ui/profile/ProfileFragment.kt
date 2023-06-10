@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.terralysis.R
 import com.example.terralysis.databinding.LayoutProfileBinding
-import com.example.terralysis.ui.AuthActivity
 import com.example.terralysis.util.ViewModelFactory
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
@@ -49,7 +49,7 @@ class ProfileFragment : Fragment() {
 
     private fun checkAuth() {
         viewModel?.getAuthData()?.observe(viewLifecycleOwner) { result ->
-            if (!result.state) startAuthActivity()
+            if (!result.state) view?.findNavController()?.navigate(R.id.action_navigation_profile_to_navigation_welcome)
         }
     }
 
@@ -88,8 +88,12 @@ class ProfileFragment : Fragment() {
                 @Suppress("Deprecation")
                 Resources.getSystem().configuration.locale
             }
-
-        return currentLocale.language
+        return when(currentLocale.language){
+            "en" -> "English"
+            "id" -> "Bahasa"
+            "es" -> "Spanish"
+            else -> currentLocale.language
+        }
     }
 
     private fun setNavigation() {
@@ -118,13 +122,6 @@ class ProfileFragment : Fragment() {
                 viewModel?.logout()
             }
             .show()
-    }
-
-    private fun startAuthActivity() {
-        val authIntent = Intent(requireContext(), AuthActivity::class.java)
-        authIntent.putExtra(AuthActivity.isSplash, false)
-        startActivity(authIntent)
-        requireActivity().finish()
     }
 
     private fun obtainViewModel() {
