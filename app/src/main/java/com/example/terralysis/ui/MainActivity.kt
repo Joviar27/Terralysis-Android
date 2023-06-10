@@ -51,11 +51,11 @@ class MainActivity : AppCompatActivity() {
     private fun setBottomNavigation(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.navView.visibility =
-                if (listFrament.contains(destination.id)) View.VISIBLE else View.GONE
+                if (listFragmentBottomBar.contains(destination.id)) View.VISIBLE else View.GONE
 
             binding.toolbar.apply {
                 visibility =
-                    if (listFrament.contains(destination.id)) View.GONE
+                    if (listFragmentNoTopBar.contains(destination.id)) View.GONE
                     else View.VISIBLE
                 title = destination.label
                 setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
@@ -65,12 +65,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        val listFrament =
+        val listFragmentBottomBar =
             listOf(
                 R.id.navigation_home,
                 R.id.navigation_scan,
                 R.id.navigation_history,
-                R.id.navigation_profile
+                R.id.navigation_profile,
+            )
+
+        val listFragmentNoTopBar =
+            listOf(
+                R.id.navigation_home,
+                R.id.navigation_scan,
+                R.id.navigation_history,
+                R.id.navigation_profile,
+                R.id.navigation_splashscreen2,
+                R.id.navigation_signin,
+                R.id.navigation_welcome,
+                R.id.navigation_signup
             )
     }
 }
