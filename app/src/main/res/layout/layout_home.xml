@@ -24,29 +24,31 @@
             android:id="@+id/tv_welcome_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:maxLines="2"
             android:text="@string/home_welcome_message"
             android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintEnd_toStartOf="@+id/iv_profile"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_profile" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_profile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
+            android:src="@color/secondary"
             app:layout_constraintBottom_toBottomOf="@+id/iv_decorTop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
-            tools:srcCompat="@tools:sample/avatars"/>
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
 
         <include
             android:id="@+id/btn_about_app"
@@ -66,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="190dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_button_about_app"
             android:elevation="5dp"
@@ -102,17 +104,19 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_about_apps" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_riwayat"
+            android:id="@+id/rv_carousel"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:clipChildren="false"
             android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_scan"
-            tools:listitem="@layout/item_carousel"/>
+            tools:listitem="@layout/item_carousel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
