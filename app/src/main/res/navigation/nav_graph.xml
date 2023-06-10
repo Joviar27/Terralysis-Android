@@ -3,8 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/navigation_splashscreen2">
 
+    <fragment
+        android:id="@+id/navigation_signup"
+        android:name="com.example.terralysis.ui.authorization.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/layout_signup">
+        <action
+            android:id="@+id/action_navigation_signup_to_navigation_signin"
+            app:destination="@id/navigation_signin"
+            app:popUpTo="@id/navigation_welcome" />
+        <action
+            android:id="@+id/action_navigation_signup_to_navigation_welcome"
+            app:destination="@id/navigation_welcome" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_signin"
+        android:name="com.example.terralysis.ui.authorization.signin.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/layout_signin">
+        <action
+            android:id="@+id/action_navigation_signin_to_navigation_signup"
+            app:destination="@id/navigation_signup"
+            app:popUpTo="@id/navigation_welcome" />
+        <action
+            android:id="@+id/action_navigation_signin_to_navigation_welcome"
+            app:destination="@id/navigation_welcome" />
+        <action
+            android:id="@+id/action_navigation_signin_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_welcome"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_welcome"
+        android:name="com.example.terralysis.ui.authorization.welcome.WelcomeFragment"
+        android:label="WelcomeFragment"
+        tools:layout="@layout/layout_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_signInFragment"
+            app:destination="@id/navigation_signin" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_signUpFragment"
+            app:destination="@id/navigation_signup" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.terralysis.ui.home.HomeFragment"
@@ -40,8 +84,29 @@
         <action
             android:id="@+id/action_profileFragment_to_AboutFragment"
             app:destination="@id/navigation_about" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_welcome"
+            app:destination="@id/navigation_welcome"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_splashscreen2"
+        android:name="com.example.terralysis.ui.authorization.splashscreen.SplashScreenFragment"
+        android:label="SplashScreenFragment"
+        tools:layout="@layout/layout_splash_screen">
+        <action
+            android:id="@+id/action_navigation_splashscreen_to_navigation_welcome"
+            app:destination="@id/navigation_welcome"
+            app:popUpTo="@id/navigation_splashscreen2"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_splashscreen_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_splashscreen2"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_bantuan"
         android:name="com.example.terralysis.ui.bantuan.BantuanFragment"
