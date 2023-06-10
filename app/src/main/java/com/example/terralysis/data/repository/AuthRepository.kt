@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
-import androidx.lifecycle.*
 import com.example.terralysis.data.ResultState
 import com.example.terralysis.data.local.datastore.AuthPreference
 import com.example.terralysis.data.local.datastore.UserPreference
@@ -39,7 +38,8 @@ class AuthRepository(
                 }
             }
         } catch (e: Exception) {
-            emit(ResultState.Error(e.message.toString()))
+            emit(ResultState.Error(e.message as String))
+            Log.e(TAG, e.message as String)
         }
     }
 
@@ -67,7 +67,8 @@ class AuthRepository(
             }
         }
         catch (e : Exception){
-            emit(ResultState.Error(e.message.toString()))
+            emit(ResultState.Error(e.message as String))
+            Log.e(TAG, e.message as String)
         }
     }
 
