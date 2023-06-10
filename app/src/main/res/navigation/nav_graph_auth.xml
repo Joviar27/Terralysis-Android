@@ -10,10 +10,11 @@
         android:label="SignUpFragment"
         tools:layout="@layout/layout_signup">
         <action
-            android:id="@+id/action_signUpFragment_to_signInFragment"
-            app:destination="@id/navigation_signin" />
+            android:id="@+id/action_navigation_signup_to_navigation_signin"
+            app:destination="@id/navigation_signin"
+            app:popUpTo="@id/navigation_welcome" />
         <action
-            android:id="@+id/action_signUpFragment_to_welcomeFragment"
+            android:id="@+id/action_navigation_signup_to_navigation_welcome"
             app:destination="@id/navigation_welcome" />
     </fragment>
 
@@ -35,10 +36,11 @@
         android:label="SignInFragment"
         tools:layout="@layout/layout_signin">
         <action
-            android:id="@+id/action_signInFragment_to_welcomeFragment"
-            app:destination="@id/navigation_welcome" />
+            android:id="@+id/action_navigation_signin_to_navigation_signup"
+            app:destination="@id/navigation_signup"
+            app:popUpTo="@id/navigation_welcome" />
         <action
-            android:id="@+id/action_signInFragment_to_signUpFragment"
+            android:id="@+id/action_navigation_signin_to_navigation_welcome"
             app:destination="@id/navigation_welcome" />
     </fragment>
 </navigation>
