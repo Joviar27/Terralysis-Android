@@ -1,6 +1,7 @@
 package com.example.terralysis.ui.history
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.terralysis.R
 import com.example.terralysis.data.ResultState
 import com.example.terralysis.data.local.entity.ScanEntity
 import com.example.terralysis.databinding.LayoutHistoryBinding
@@ -73,17 +75,19 @@ class HistoryFragment : Fragment() {
             when (result) {
                 is ResultState.Loading -> showLoading(true)
                 is ResultState.Error -> {
+                    showToast(resources.getString(R.string.err_api_problem))
+                    Log.e(TAG, result.error)
                     showLoading(false)
-                    Toast.makeText(
-                        context,
-                        result.error,
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
                 is ResultState.Success -> {
                     showLoading(false)
                     val data = result.data
-                    historyAdapter?.submitList(data)
+                    if(data.isEmpty()){
+                        showEmpty(true)
+                    } else{
+                        showEmpty(false)
+                        historyAdapter?.submitList(data)
+                    }
                 }
             }
         }
@@ -91,6 +95,14 @@ class HistoryFragment : Fragment() {
 
     private fun showLoading(isLoading : Boolean){
         binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showEmpty(isEmpty : Boolean){
+        binding?.emptyView?.visibility = if (isEmpty) View.VISIBLE else View.GONE
+    }
+
+    private fun showToast(message : String){
+        Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
     }
 
     private fun obtainViewModel() {
@@ -105,5 +117,9 @@ class HistoryFragment : Fragment() {
         val toDetailScan = HistoryFragmentDirections.actionNavigationHistoryToNavigationDetail(scan)
         toDetailScan.scanDetail = scan
         view?.findNavController()?.navigate(toDetailScan)
+    }
+
+    companion object{
+        private const val TAG = "HistoryFragment"
     }
 }
