@@ -28,6 +28,12 @@
 
     <!-- Detail   -->
     <string name="cd_gambar_tanah">Soil Image</string>
+    <string name="property">Property</string>
+    <string name="physical_char">Physical Character</string>
+    <string name="morphology_char">Morphology Character</string>
+    <string name="chemical_char">Chemical Character</string>
+    <string name="spread">Spread</string>
+    <string name="label">%s (%s)</string>
 
     <!--  Signin and Signup  -->
     <string name="alamat_email">Email</string>
@@ -44,7 +50,7 @@
     <string name="title_scan">Scan</string>
     <string name="title_guide">Guide</string>
 
-    <!-- Profil  -->
+    <!-- Profile  -->
     <string name="language">Language</string>
     <string name="help">Help</string>
     <string name="about_app">About App</string>
@@ -72,12 +78,14 @@
     <string name="signup_failed">Failed to create an account, please try again</string>
     <string name="signin_succcess">You have successfully signed in</string>
     <string name="signup_succcess">Account created successfully, please sign in</string>
+    <string name="err_api_problem">Failed to update data</string>
 
-    <!-- Bantuan   -->
+    <!-- Help   -->
     <string name="name">Name\t:\t %s</string>
     <string name="email">Email\t:\t %s</string>
 
     <!-- Dialog  -->
+    <string name="empty_history">No scan history found,\nStart scanning now!</string>
     <string name="confirm_logout">Are you sure you want to log out?</string>
     <string name="positive">Yes</string>
     <string name="negative">No</string>
