@@ -12,9 +12,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
 
-    private var BASE_URL : String = "https://terralysis-api-v2-l22usupt4a-uc.a.run.app/"
+    private var AUTH_URL : String = "https://terralysis-final-user-vgz4nva52a-et.a.run.app/"
+    private var SCAN_URL : String = "https://terralysis-final-analysis-vgz4nva52a-et.a.run.app/"
 
-    fun getApiService(authPreference: AuthPreference) : ApiService {
+    fun getScanApiService(authPreference: AuthPreference) : ScanApiService {
 
         val pref = authPreference
 
@@ -41,11 +42,31 @@ object ApiConfig {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(SCAN_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
 
-        return retrofit.create(ApiService::class.java)
+        return retrofit.create(ScanApiService::class.java)
+    }
+
+    fun getAuthApiService() : AuthApiService{
+        val interceptor = if (BuildConfig.DEBUG){
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        } else {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(AUTH_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+
+        return retrofit.create(AuthApiService::class.java)
     }
 }
