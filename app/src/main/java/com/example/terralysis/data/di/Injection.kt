@@ -17,7 +17,7 @@ object Injection {
         val userPreference = provideUserPreference(context)
         val authPreference = provideAuthPreference(context)
 
-        val apiService = ApiConfig.getApiService(authPreference)
+        val apiService = ApiConfig.getAuthApiService()
         return AuthRepository.getInstance(apiService, userPreference, authPreference)
     }
 
@@ -25,7 +25,7 @@ object Injection {
         val authPreference = provideAuthPreference(context)
         val scanDatabase= ScanDatabase.getDatabase(context)
 
-        val apiService = ApiConfig.getApiService(authPreference)
+        val apiService = ApiConfig.getScanApiService(authPreference)
         return ScanRepository.getInstance(apiService, scanDatabase)
     }
 
