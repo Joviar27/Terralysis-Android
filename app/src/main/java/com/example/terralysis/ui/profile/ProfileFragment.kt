@@ -58,9 +58,9 @@ class ProfileFragment : Fragment() {
         viewModel?.getUserData()?.observe(viewLifecycleOwner) { user ->
             val drawable = createCustomDrawable(requireContext(), user.name[0].uppercaseChar())
             binding?.apply {
-                ivProfile?.setImageDrawable(drawable)
-                tvUsername?.text = user.name
-                tvEmail?.text = user.email
+                ivProfile.setImageDrawable(drawable)
+                tvUsername.text = user.name
+                tvEmail.text = user.email
             }
         }
 
@@ -92,7 +92,7 @@ class ProfileFragment : Fragment() {
             }
         return when(currentLocale.language){
             "en" -> "English"
-            "id" -> "Indonesia"
+            "in" -> "Indonesia"
             "es" -> "Espanyol"
             else -> currentLocale.language
         }
