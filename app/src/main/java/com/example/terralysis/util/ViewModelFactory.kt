@@ -13,6 +13,7 @@ import com.example.terralysis.ui.profile.ProfileViewModel
 import com.example.terralysis.ui.authorization.signin.SignInViewModel
 import com.example.terralysis.ui.authorization.signup.SignUpViewModel
 import com.example.terralysis.ui.authorization.splashscreen.SplashScreenViewModel
+import com.example.terralysis.ui.detail.DetailViewModel
 
 class ViewModelFactory (
     private val scanRepository: ScanRepository,
@@ -26,10 +27,11 @@ class ViewModelFactory (
             modelClass.isAssignableFrom(SignInViewModel::class.java) -> SignInViewModel(authRepository) as T
             modelClass.isAssignableFrom(SignUpViewModel::class.java) -> SignUpViewModel(authRepository) as T
             modelClass.isAssignableFrom(SplashScreenViewModel::class.java) -> SplashScreenViewModel(authRepository) as T
-            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> ProfileViewModel(authRepository) as T
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> ProfileViewModel(authRepository,scanRepository) as T
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(authRepository) as T
             modelClass.isAssignableFrom(HistoryViewModel::class.java) -> HistoryViewModel(scanRepository, authRepository) as T
-            modelClass.isAssignableFrom(CameraViewModel::class.java) -> CameraViewModel(scanRepository) as T
+            modelClass.isAssignableFrom(DetailViewModel::class.java) -> DetailViewModel(scanRepository, authRepository) as T
+            modelClass.isAssignableFrom(CameraViewModel::class.java) -> CameraViewModel(scanRepository, authRepository) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }
     }
