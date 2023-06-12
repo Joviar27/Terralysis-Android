@@ -3,8 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/navigation_splashscreen2">
 
+    <fragment
+        android:id="@+id/navigation_signup"
+        android:name="com.example.terralysis.ui.authorization.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/layout_signup">
+        <action
+            android:id="@+id/action_navigation_signup_to_navigation_signin"
+            app:destination="@id/navigation_signin"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/navigation_welcome" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_signin"
+        android:name="com.example.terralysis.ui.authorization.signin.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/layout_signin">
+        <action
+            android:id="@+id/action_navigation_signin_to_navigation_signup"
+            app:destination="@id/navigation_signup"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/navigation_welcome" />
+        <action
+            android:id="@+id/action_navigation_signin_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:enterAnim="@android:anim/fade_in"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_welcome"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_welcome"
+        android:name="com.example.terralysis.ui.authorization.welcome.WelcomeFragment"
+        android:label="WelcomeFragment"
+        tools:layout="@layout/layout_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_signInFragment"
+            app:destination="@id/navigation_signin"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@android:anim/slide_in_left" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_signUpFragment"
+            app:destination="@id/navigation_signup"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@android:anim/slide_in_left" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.terralysis.ui.home.HomeFragment"
@@ -12,7 +59,9 @@
         tools:layout="@layout/layout_home">
         <action
             android:id="@+id/action_navigation_home_to_navigation_guide"
-            app:destination="@id/navigation_guide" />
+            app:destination="@id/navigation_guide"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_camera"
             app:destination="@id/navigation_scan" />
@@ -25,7 +74,9 @@
         tools:layout="@layout/layout_history">
         <action
             android:id="@+id/action_navigation_history_to_navigation_detail"
-            app:destination="@id/navigation_detail" />
+            app:destination="@id/navigation_detail"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
     </fragment>
 
     <fragment
@@ -35,22 +86,44 @@
         tools:layout="@layout/layout_profile">
         <action
             android:id="@+id/action_profileFragment_to_bantuanFragment"
-            app:destination="@id/navigation_bantuan" />
+            app:destination="@id/navigation_bantuan"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
 
         <action
             android:id="@+id/action_profileFragment_to_AboutFragment"
-            app:destination="@id/navigation_about" />
+            app:destination="@id/navigation_about"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_welcome"
+            app:destination="@id/navigation_welcome"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_splashscreen2"
+        android:name="com.example.terralysis.ui.authorization.splashscreen.SplashScreenFragment"
+        android:label="SplashScreenFragment"
+        tools:layout="@layout/layout_splash_screen">
+        <action
+            android:id="@+id/action_navigation_splashscreen_to_navigation_welcome"
+            app:destination="@id/navigation_welcome"
+            app:popUpTo="@id/navigation_splashscreen2"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_splashscreen_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_splashscreen2"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_bantuan"
         android:name="com.example.terralysis.ui.bantuan.BantuanFragment"
         android:label="@string/title_bantuan"
-        tools:layout="@layout/layout_help" >
-        <action
-            android:id="@+id/action_navigation_bantuan_to_navigation_profile"
-            app:destination="@id/navigation_profile" />
-    </fragment>
+        tools:layout="@layout/layout_help" />
 
     <fragment
         android:id="@+id/navigation_scan"
@@ -58,13 +131,9 @@
         tools:layout="@layout/layout_camera">
         <action
             android:id="@+id/action_CameraFragment_to_DetailFragment"
-            app:destination="@id/navigation_detail" />
-        <action
-            android:id="@+id/action_navigation_camera_to_navigation_history"
-            app:destination="@id/navigation_history" />
-        <action
-            android:id="@+id/action_navigation_camera_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/navigation_detail"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@android:anim/fade_in" />
     </fragment>
 
     <fragment
@@ -72,9 +141,6 @@
         android:name="com.example.terralysis.ui.detail.DetailFragment"
         android:label="@string/title_detail"
         tools:layout="@layout/layout_detail" >
-        <action
-            android:id="@+id/action_navigation_detail_to_navigation_history"
-            app:destination="@id/navigation_history" />
         <argument
             android:name="scanDetail"
             app:argType="com.example.terralysis.data.local.entity.ScanEntity" />
@@ -84,11 +150,7 @@
         android:id="@+id/navigation_about"
         android:label="@string/title_about"
         android:name="com.example.terralysis.ui.about.AboutFragment"
-        tools:layout="@layout/layout_about_app" >
-        <action
-            android:id="@+id/action_navigation_about_to_navigation_profile"
-            app:destination="@id/navigation_profile" />
-    </fragment>
+        tools:layout="@layout/layout_about_app" />
 
     <fragment
         android:id="@+id/navigation_guide"

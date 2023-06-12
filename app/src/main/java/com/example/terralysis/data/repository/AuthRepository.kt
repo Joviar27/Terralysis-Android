@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
-import androidx.lifecycle.*
 import com.example.terralysis.data.ResultState
 import com.example.terralysis.data.local.datastore.AuthPreference
 import com.example.terralysis.data.local.datastore.UserPreference
@@ -12,13 +11,13 @@ import com.example.terralysis.data.local.entity.AuthEntity
 import com.example.terralysis.data.local.entity.UserEntity
 import com.example.terralysis.data.remote.response.SignInResponse
 import com.example.terralysis.data.remote.response.SignUpResponse
-import com.example.terralysis.data.remote.retrofit.ApiService
+import com.example.terralysis.data.remote.retrofit.AuthApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 class AuthRepository(
-    private val apiService: ApiService,
+    private val apiService: AuthApiService,
     private val userPreference: UserPreference,
     private val authPreference: AuthPreference
     ){
@@ -39,7 +38,8 @@ class AuthRepository(
                 }
             }
         } catch (e: Exception) {
-            emit(ResultState.Error(e.message.toString()))
+            emit(ResultState.Error(e.message as String))
+            Log.e(TAG, e.message as String)
         }
     }
 
@@ -67,7 +67,8 @@ class AuthRepository(
             }
         }
         catch (e : Exception){
-            emit(ResultState.Error(e.message.toString()))
+            emit(ResultState.Error(e.message as String))
+            Log.e(TAG, e.message as String)
         }
     }
 
@@ -89,8 +90,6 @@ class AuthRepository(
             }
         }
     }
-
-    //All the function below this can be separated into a new repository, but since the app scale still small, i think it's still unnecessary
 
     private suspend fun setUserData(
         userId : String,
@@ -122,24 +121,6 @@ class AuthRepository(
         return userPreference.userFlow
     }
 
-    /* I think the function below is overly complex when it's just reading simple data from datastore
-    fun getUserData() : LiveData<ResultState<UserEntity>> = liveData{
-        emit(ResultState.Loading)
-        try {
-            val user = userPreference.userFlow.firstOrNull()
-            if (user == null) {
-                emit(ResultState.Error("User is null"))
-            } else {
-                val userData = MutableLiveData<ResultState<UserEntity?>>()
-                userData.value = ResultState.Success(user)
-                emitSource(userData)
-            }
-        } catch (e: Exception) {
-            emit(ResultState.Error(e.message.toString()))
-        }
-    }
-     */
-
     fun checkAuthState(): Flow<AuthEntity> {
         return authPreference.authFlow
     }
@@ -156,7 +137,7 @@ class AuthRepository(
         private var instance : AuthRepository? = null
 
         fun getInstance(
-            apiService:ApiService,
+            apiService:AuthApiService,
             userPreference: UserPreference,
             authPreference: AuthPreference
         ) : AuthRepository =

@@ -1,7 +1,9 @@
 package com.example.terralysis.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -9,6 +11,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.terralysis.R
 import com.example.terralysis.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.WindowInsetsController
+import android.view.WindowManager
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +24,19 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val insetsController = window.insetsController
+            insetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+            )
+        } else {
+            val window: Window = window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            @Suppress("deprecation")
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
 
         val navView: BottomNavigationView = binding.navView
         val navHostFragment =
@@ -31,28 +49,41 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setBottomNavigation(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { controller, destination, _ ->
             binding.navView.visibility =
-                if (listFrament.contains(destination.id)) View.VISIBLE else View.GONE
+                if (listFragmentBottomBar.contains(destination.id)) View.VISIBLE else View.GONE
 
             binding.toolbar.apply {
                 visibility =
-                    if (listFrament.contains(destination.id)) View.GONE
+                    if (listFragmentNoTopBar.contains(destination.id)) View.GONE
                     else View.VISIBLE
                 title = destination.label
-                setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+                setNavigationOnClickListener {
+                    controller.navigateUp()
+                }
             }
-
         }
     }
 
     companion object {
-        val listFrament =
+        val listFragmentBottomBar =
             listOf(
                 R.id.navigation_home,
                 R.id.navigation_scan,
                 R.id.navigation_history,
-                R.id.navigation_profile
+                R.id.navigation_profile,
+            )
+
+        val listFragmentNoTopBar =
+            listOf(
+                R.id.navigation_home,
+                R.id.navigation_scan,
+                R.id.navigation_history,
+                R.id.navigation_profile,
+                R.id.navigation_splashscreen2,
+                R.id.navigation_signin,
+                R.id.navigation_welcome,
+                R.id.navigation_signup
             )
     }
 }

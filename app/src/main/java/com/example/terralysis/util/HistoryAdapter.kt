@@ -30,6 +30,9 @@ class HistoryAdapter (
             itemView.setOnClickListener{
                 onItemClickedListener.onClicked(scanDetail)
             }
+
+            binding.ivItem.contentDescription =
+                itemView.context.resources.getString(R.string.cdesc_image_soil, scanDetail.name)
         }
     }
 

@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Terralysis" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
@@ -22,10 +22,10 @@
         <item name="android:statusBarColor">?attr/colorPrimaryContainer</item>
         <!-- Customize your theme here. -->
         <item name="shapeAppearanceCornerMedium">@style/image_rounded20</item>
+        <item name="android:forceDarkAllowed">false</item>
     </style>
     
     <style name="image_rounded20">
         <item name="cornerSize">20dp</item>
     </style>
-
 </resources>

@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 data class HistoryResponse(
 
-	@field:SerializedName("data")
-	val data: List<DataItem>,
+	@field:SerializedName("image")
+	val image: List<ImageItem>? = null,
 
-	@field:SerializedName("error")
-	val error: Boolean,
+	@field:SerializedName("status_code")
+	val statusCode: Int,
 
 	@field:SerializedName("message")
 	val message: String
 )
 
-data class DataItem(
+data class ImageItem(
 
 	@field:SerializedName("createdAt")
 	val createdAt: String,
@@ -22,21 +22,9 @@ data class DataItem(
 	@field:SerializedName("imageId")
 	val imageId: String,
 
-	@field:SerializedName("size")
-	val size: Int,
-
-	@field:SerializedName("originalname")
-	val originalname: String,
-
-	@field:SerializedName("mimetype")
-	val mimetype: String,
-
-	@field:SerializedName("userId")
-	val userId: String,
+	@field:SerializedName("kelas")
+	val kelas: String,
 
 	@field:SerializedName("url")
-	val url: String,
-
-	@field:SerializedName("updatedAt")
-	val updatedAt: String
+	val url: String
 )

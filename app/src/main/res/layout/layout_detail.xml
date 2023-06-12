@@ -8,93 +8,198 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_detail"
-            app:shapeAppearance="?attr/shapeAppearanceCornerMedium"
-            tools:srcCompat="@tools:sample/avatars"
             android:layout_width="match_parent"
             android:layout_height="204dp"
             android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/cd_gambar_tanah"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/cd_gambar_tanah"
             android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:shapeAppearance="?attr/shapeAppearanceCornerMedium"
+            tools:srcCompat="@tools:sample/avatars" />
+
         <LinearLayout
             android:id="@+id/item_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="16dp"
-            android:padding="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/background_rounded12"
             android:backgroundTint="?attr/colorSecondaryContainer"
-            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="vertical"
+            android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_detail">
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_detail_label"
+                style="@style/TextAppearance.Material3.HeadlineSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.Material3.HeadlineMedium"
-                tools:text="Jenis Tanah"/>
+                android:maxLines="2"
+                tools:text="Jenis Tanah" />
+
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_detail_shortDesc"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_detail_longdesc"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                style="@style/TextAppearance.Material3.BodyLarge"
-                tools:text="Deskripsi Singkat Jenis tanah yang penjelasannya bisa sampe 2 baris gitu gaes, well mungkin 3 baris"/>
+                tools:text="Deskripsi Singkat Jenis tanah yang penjelasannya bisa sampe 2 baris gitu gaes, well mungkin 3 baris" />
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="16dp"
-            android:padding="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/background_rounded12"
             android:backgroundTint="?attr/colorSurfaceVariant"
-            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="vertical"
+            android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_desc">
+
             <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.TitleLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.Material3.TitleLarge"
-                tools:text="Sub Detail 1"/>
+                android:text="@string/property" />
+
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_detail_longDesc"
+                android:id="@+id/tv_detail_property"
+                style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                style="@style/TextAppearance.Material3.BodyMedium"
                 android:maxLines="7"
-                tools:text="@tools:sample/lorem/random"/>
+                tools:text="@tools:sample/lorem/random" />
+
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp" />
+
             <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.TitleLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.Material3.TitleLarge"
-                tools:text="Sub Detail 2"/>
+                android:text="@string/spread" />
+
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_detail_spread"
+                style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="match_parent"
-                android:id="@+id/tv_detail_longDesc2"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                style="@style/TextAppearance.Material3.BodyMedium"
                 android:maxLines="7"
                 tools:text="@tools:sample/lorem/random" />
         </LinearLayout>
-    </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/background_rounded12"
+            android:backgroundTint="?attr/colorSurfaceVariant"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.TitleLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/physical_char" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_detail_physicalChar"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:maxLines="7"
+                tools:text="@tools:sample/lorem/random" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.TitleLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/morphology_char" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_detail_morphologyChar"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:maxLines="7"
+                tools:text="@tools:sample/lorem/random" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.TitleLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/chemical_char" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_detail_chemicalChar"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:maxLines="7"
+                tools:text="@tools:sample/lorem/random" />
+        </LinearLayout>
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.32999998" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

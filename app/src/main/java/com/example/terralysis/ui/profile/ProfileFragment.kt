@@ -10,10 +10,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.terralysis.R
 import com.example.terralysis.databinding.LayoutProfileBinding
-import com.example.terralysis.ui.AuthActivity
 import com.example.terralysis.util.ViewModelFactory
+import com.example.terralysis.util.createCustomDrawable
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
 
 class ProfileFragment : Fragment() {
@@ -42,34 +44,37 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         checkAuth()
-        setContent()
+        setupView()
         setNavigation()
     }
 
     private fun checkAuth() {
         viewModel?.getAuthData()?.observe(viewLifecycleOwner) { result ->
-            if (!result.state) startAuthActivity()
+            if (!result.state) view?.findNavController()?.navigate(R.id.action_navigation_profile_to_navigation_welcome)
         }
     }
 
-    private fun setContent() {
-        //Temp - until found default pic
-        binding?.ivProfile?.setImageResource(R.color.secondary)
-
+    private fun setupView() {
         viewModel?.getUserData()?.observe(viewLifecycleOwner) { user ->
-            binding?.tvUsername?.text = user.name
-            binding?.tvEmail?.text = user.email
+            val drawable = createCustomDrawable(requireContext(), user.name[0].uppercaseChar())
+            binding?.apply {
+                ivProfile?.setImageDrawable(drawable)
+                tvUsername?.text = user.name
+                tvEmail?.text = user.email
+            }
         }
 
         binding?.itemBahasa?.apply {
             mtrlListItemText.text = resources.getText(R.string.language)
             mtrlListItemSecondaryText.text = getLocaleLanguage()
         }
+
         binding?.itemBantuan?.apply {
             mtrlListItemIcon.setImageResource(R.drawable.outline_contact_support_24)
-            mtrlListItemText.text = resources.getText(R.string.bantuan)
+            mtrlListItemText.text = resources.getText(R.string.help)
             mtrlListItemSecondaryText.visibility = View.GONE
         }
+
         binding?.itemAboutApp?.apply {
             mtrlListItemIcon.setImageResource(R.drawable.outline_info_24)
             mtrlListItemText.text = resources.getText(R.string.about_app)
@@ -85,8 +90,12 @@ class ProfileFragment : Fragment() {
                 @Suppress("Deprecation")
                 Resources.getSystem().configuration.locale
             }
-
-        return currentLocale.language
+        return when(currentLocale.language){
+            "en" -> "English"
+            "id" -> "Indonesia"
+            "es" -> "Espanyol"
+            else -> currentLocale.language
+        }
     }
 
     private fun setNavigation() {
@@ -100,15 +109,22 @@ class ProfileFragment : Fragment() {
             itemAboutApp.mtrlListItemNavigation.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_profileFragment_to_AboutFragment)
             )
-            btnLogout.setOnClickListener { viewModel?.logout() }
+            btnLogout.setOnClickListener { showConfirmLogout() }
         }
     }
 
-    private fun startAuthActivity() {
-        val authIntent = Intent(requireContext(), AuthActivity::class.java)
-        authIntent.putExtra(AuthActivity.isSplash, false)
-        startActivity(authIntent)
-        requireActivity().finish()
+    private fun showConfirmLogout(){
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.logout))
+            .setMessage(resources.getString(R.string.confirm_logout))
+            .setNegativeButton(resources.getString(R.string.negative)) { dialog, _->
+                dialog.dismiss()
+            }
+            .setPositiveButton(resources.getString(R.string.positive)) { _, _ ->
+                viewModel?.deleteLocalData()
+                viewModel?.logout()
+            }
+            .show()
     }
 
     private fun obtainViewModel() {
