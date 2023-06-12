@@ -92,7 +92,7 @@ class ProfileFragment : Fragment() {
             }
         return when(currentLocale.language){
             "en" -> "English"
-            "id" -> "Bahasa"
+            "in" -> "Indonesia"
             "es" -> "Spanish"
             else -> currentLocale.language
         }

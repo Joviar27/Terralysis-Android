@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">Terralysis</string>
+
+    <string name="text_perlu_bantuan">Perlu Bantuan?\nHubungi Kami</string>
+
+    <string name="splash_made_with">Made With Love by C23-P381</string>
+
+    <!-- Sign In Page   -->
+    <string name="signin_welcome_to">Selamat datang di</string>
+    <string name="signin_welcome_message">Temukan dan identifikasi jenis tanah dengan mudah dan akurat melalui pemindaian gambar</string>
+    <string name="signin">Masuk</string>
+    <string name="signup">Daftar</string>
+
+    <!-- Home Page   -->
+    <string name="home_welcome_message">Selamat datang,\n%s</string>
+    <string name="btn_about_app">Bagaimana\nCara Memulai?</string>
+    <string name="home_start_scan">Mulai Pindai\nDisini!</string>
+
+    <!-- About App   -->
+    <string name="version_code">1.0.0</string>
+    <string name="repo_link">https://github.com/Joviar27/Terralysis</string>
+    <string name="our_repository">Our Repository</string>
+    <string name="about_1">Terralysis adalah aplikasi identifikasi tanah yang dikembangkan untuk memberikan pengguna alat yang mudah digunakan untuk mengidentifikasi jenis tanah secara akurat. Dengan mengunggah foto sampel tanah, pengguna dapat dengan cepat mendapatkan informasi detail tentang jenis tanah tersebut seperti kandungan dan ciri-ciri fisik maupun kimia. Informasi ini penting untuk memilih tanaman yang sesuai, menerapkan teknik budidaya yang efektif, dan membuat keputusan yang berdasarkan data tentang penggunaan pupuk.</string>
+    <string name="about_2">Terralysis bertujuan untuk meningkatkan produktivitas pertanian dan menjaga kesehatan tanah secara efektif, mengatasi kurangnya keahlian dan pengetahuan dalam bidang ilmu tanah di Indonesia. Dengan memanfaatkan teknologi, Terralysis memberdayakan pengguna untuk mengambil keputusan yang berdasarkan informasi, yang pada akhirnya akan berkontribusi pada ketahanan pangan dan pertanian yang berkelanjutan di Indonesia.</string>
+
+    <!-- About Us  -->
+    <string name="terralysis_team">Terralysis Team</string>
+
+    <!-- Detail   -->
+    <string name="cd_gambar_tanah">Gambar Tanah</string>
+
+    <!--  Signin and Signup  -->
+    <string name="alamat_email">Email</string>
+    <string name="password">Password</string>
+    <string name="nama">Nama</string>
+
+    <!-- Bottom bar   -->
+    <string name="title_home">Beranda</string>
+    <string name="title_history">Riwayat</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_bantuan">Bantuan</string>
+    <string name="title_detail">Detail Analisa</string>
+    <string name="title_about">Tentang Aplikasi</string>
+    <string name="title_scan">Pindai</string>
+    <string name="title_guide">Panduan</string>
+
+    <!-- Profil  -->
+    <string name="language">Bahasa</string>
+    <string name="help">Bantuan</string>
+    <string name="about_app">Tentang Aplikasi</string>
+    <string name="logout">Keluar</string>
+
+    <!--  Camera  -->
+    <string name="failed_capture_message">Gagal mengambil gambar</string>
+    <string name="failed_upload_message">Gagal menganalisa gambar</string>
+    <string name="failed_gallery_message">Gagal mengambil gambar dari gallery</string>
+    <string name="process_message">Gambar sedang dianalisa…</string>
+    <string name="chooser">Pilih gambar</string>
+    <string name="take_picture">Ambil gambar</string>
+    <string name="switch_camera">Putar kamera</string>
+    <string name="back">Kembali</string>
+    <string name="upload_from_gallery">Unggah gambar dari Gallery</string>
+
+    <!-- TextView Error   -->
+    <string name="err_required">Harus diisi</string>
+    <string name="err_invalid_email">Email tidak valid</string>
+    <string name="err_invalid_pass_1">Minimal 8 karakter</string>
+    <string name="err_invalid_pass_2">Tidak boleh ada spasi</string>
+
+    <!-- Toast   -->
+    <string name="signin_failed">Gagal untuk masuk, silahkan coba lagi</string>
+    <string name="signup_failed">Gagal mendaftarkan akun, silahkan coba lagi</string>
+    <string name="signin_succcess">Anda telah masuk</string>
+    <string name="signup_succcess">Akun berhasil dibuat, silahkan masuk</string>
+
+    <!-- Bantuan   -->
+    <string name="name">Nama\t:\t %s</string>
+    <string name="email">Email\t:\t %s</string>
+
+    <!-- Dialog  -->
+    <string name="confirm_logout">Anda yakin ingin keluar?</string>
+    <string name="positive">Ya</string>
+    <string name="negative">Tidak</string>
+
+    <!-- Guide   -->
+    <string name="title_1">Siapkan kondisi sampel</string>
+    <string name="title_2">Atur pencahayaan</string>
+    <string name="title_3">Perhatikan kualitas gambar</string>
+
+    <string name="desc_1">Letakkan sampel tanah yang ingin dianalisa pada suatu wadah. Hindari adanya elemen lain dalam proses pengambilan gambar sampel tanah.</string>
+    <string name="desc_2">Ambil gambar sampel tanah pada tempat dengan pencahayaan yang cukup untuk meningkatkan detail dari gambar sampel tanah yang diambil</string>
+    <string name="desc_3">Pastikan gambar dari sampel yang diambil memiliki kualitas yang baik, hindari kondisi dimana gambar yang diambil buram atau kurang fokus</string>
+
+    <!-- content Description -->
+    <string name="cdesc_logo_terralysis">Logo Terralysis</string>
+    <string name="cdesc_submit_signup_form">Kirim Formulir Pendaftaran</string>
+    <string name="cdesc_submit_signin_form">Kirim Formulir Masuk</string>
+    <string name="cdesc_navigate_to_signup">Menuju Halaman Pendaftaran</string>
+    <string name="cdesc_navigate_to_signin">Menuju Halaman Masuk</string>
+    <string name="cdesc_photo_profile">Photo Profil Default</string>
+    <string name="cdesc_carosale">carosale %s</string>
+    <string name="cdesc_image_soil">Gambar tanah %s anda</string>
+    <string name="cdesc_prepare_sample">Tanah di dalam wadah</string>
+    <string name="cdesc_adjust_lighting">Tanah dengan pencahayaan bagus</string>
+    <string name="cdesc_quality_image">Gambar tanah dengan kualitas bagus</string>
+
+</resources>
