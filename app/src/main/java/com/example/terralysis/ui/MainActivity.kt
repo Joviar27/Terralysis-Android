@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setBottomNavigation(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { controller, destination, _ ->
             binding.navView.visibility =
                 if (listFragmentBottomBar.contains(destination.id)) View.VISIBLE else View.GONE
 
@@ -58,9 +58,10 @@ class MainActivity : AppCompatActivity() {
                     if (listFragmentNoTopBar.contains(destination.id)) View.GONE
                     else View.VISIBLE
                 title = destination.label
-                setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+                setNavigationOnClickListener {
+                    controller.navigateUp()
+                }
             }
-
         }
     }
 
