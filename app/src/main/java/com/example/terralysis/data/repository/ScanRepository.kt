@@ -1,7 +1,7 @@
 package com.example.terralysis.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.example.terralysis.data.ResultState
@@ -9,57 +9,50 @@ import com.example.terralysis.data.local.entity.ScanEntity
 import com.example.terralysis.data.local.room.ScanDatabase
 import com.example.terralysis.data.remote.response.HistoryResponse
 import com.example.terralysis.data.remote.response.ScanRequestResponse
-import com.example.terralysis.data.remote.retrofit.ApiService
-import com.example.terralysis.util.dateFormater
+import com.example.terralysis.data.remote.response.ScanResultResponse
+import com.example.terralysis.data.remote.retrofit.ScanApiService
+import com.example.terralysis.util.dateFormatter
 import okhttp3.MultipartBody
 
 class ScanRepository(
-    private val apiService: ApiService,
+    private val apiService: ScanApiService,
     private val scanDatabase: ScanDatabase,
 ) {
+
     fun getScanHistory(
         userId : String
     ): LiveData<ResultState<List<ScanEntity>>> = liveData {
         emit(ResultState.Loading)
         try {
             val responseHistory = fetchScanHistory(userId)
-            when(responseHistory.error) {
-                true -> emit(ResultState.Error(responseHistory.message))
-                false -> {
-                    val history = mapResponseToScanEntities(responseHistory)
+            val history = mapResponseToScanEntities(responseHistory)
 
-                    deleteAllScans()
+            insertAllScans(history)
 
-                    insertAllScans(history)
-
-                    emitSource(getLocalScanHistory())
-                }
-            }
+            emitSource(getLocalScanHistory())
         } catch (e: Exception) {
+            emitSource(getLocalScanHistory())
             emit(ResultState.Error(e.message.toString()))
         }
     }
 
-    private fun mapResponseToScanEntities(responseHistory: HistoryResponse): List<ScanEntity> {
-        return responseHistory.data.map { response ->
+    private fun mapResponseToScanEntities(historyResponse: HistoryResponse): List<ScanEntity> {
+        return historyResponse.image?.map { response ->
             ScanEntity(
                 id = response.imageId,
-                timestamp = dateFormater(response.createdAt),
+                timestamp = dateFormatter(response.createdAt),
                 uri = response.url,
-                //Waiting for API to be completed
-                name = "Dummy sambil nunggu API",
-                shortDesc = "Dummy sambil nunggu API",
-                longDesc = "Dummy sambil nunggu API"
+                name = response.kelas
             )
-        }
+        } ?: emptyList()
     }
 
-    private suspend fun deleteAllScans() {
+    suspend fun deleteAllScans() {
         scanDatabase.scanDao().deleteAll()
     }
 
     private suspend fun insertAllScans(scanEntities: List<ScanEntity>) {
-        scanDatabase.scanDao().insertScan(scanEntities)
+        scanDatabase.scanDao().insertScans(scanEntities)
     }
 
     private suspend fun fetchScanHistory(userId: String): HistoryResponse {
@@ -72,68 +65,97 @@ class ScanRepository(
         }
     }
 
-    //This one still call the dummy API endpoint
     fun addScanRequest(
         imageMultipart: MultipartBody.Part,
+        userId: String
     ): LiveData<ResultState<ScanEntity>> = liveData {
         emit(ResultState.Loading)
         try {
-            val response = submitScanRequest(imageMultipart)
+            val scanRequestResponse = submitScanRequest(imageMultipart, userId)
+            val result = convertRequestToScanEntities(scanRequestResponse)
 
-            when(response.error){
-                true -> emit(ResultState.Error(response.message))
-                false -> {
-                    val result = convertResponseToScanEntities(response)
-                    emit(ResultState.Success(result))
-                }
-            }
+            insertScan(result)
+
+            emitSource(getLocalScan(result.id))
         } catch (e: Exception) {
-            emit(ResultState.Error(e.message.toString()))
+            emit(ResultState.Error(e.message as String))
+            Log.e(TAG, e.message as String)
         }
     }
 
-    private suspend fun submitScanRequest(imageMultipart: MultipartBody.Part): ScanRequestResponse {
-        return apiService.scanRequest(imageMultipart)
+    private suspend fun submitScanRequest(imageMultipart: MultipartBody.Part, userId: String): ScanRequestResponse {
+        return apiService.scanRequest(userId, imageMultipart)
     }
 
-    private fun convertResponseToScanEntities(scanResult : ScanRequestResponse): ScanEntity {
+    private suspend fun insertScan(scanEntity: ScanEntity){
+        scanDatabase.scanDao().insertScan(scanEntity)
+    }
+
+    private fun convertRequestToScanEntities(response: ScanRequestResponse): ScanEntity {
         return ScanEntity(
-                id = scanResult.data.imageId,
-                timestamp = dateFormater(scanResult.data.createdAt),
-                uri = scanResult.data.url,
-                //Waiting for API to be completed
-                name = "Dummy sambil nunggu API",
-                shortDesc = "Dummy sambil nunggu API",
-                longDesc = "Dummy sambil nunggu API"
+                id = response.imageId,
+                timestamp = "",
+                uri = response.url,
+                name = response.kelas,
             )
         }
 
-    /*This one is a dummy to get individual scan result
-    Not sure we'll ever need this one
     fun getScanResult(
         userId: String,
         imageId: String
-    ): LiveData<ResultState<ScanResultResponse>> = liveData {
+    ): LiveData<ResultState<ScanEntity>> = liveData {
         emit(ResultState.Loading)
         try {
-            val response = fetchScanResult(userId, imageId)
-            emit(ResultState.Success(response))
+            val scanResultResponse = fetchScanResult(userId, imageId)
+            val scan = convertResultToScanEntities(scanResultResponse)
+
+            updateScan(scan)
+
+            emitSource(getLocalScan(imageId))
         } catch (e: Exception) {
-            emit(ResultState.Error(e.message.toString()))
+            emit(ResultState.Error(e.message as String))
+            emitSource(getLocalScan(imageId))
         }
     }
 
-    private suspend fun fetchScanResult(userId: String, imageId: String): ScanResultResponse {
+    private suspend fun fetchScanResult(userId: String, imageId : String) : ScanResultResponse {
         return apiService.getScanResult(userId, imageId)
     }
-     */
+
+    private suspend fun updateScan(scanEntity: ScanEntity){
+        scanDatabase.scanDao().updateScan(scanEntity)
+    }
+
+    private fun getLocalScan(imageId: String) : LiveData<ResultState<ScanEntity>>{
+        return scanDatabase.scanDao().getSingleResult(imageId).map {
+            ResultState.Success(it)
+        }
+    }
+
+    private fun convertResultToScanEntities(response: ScanResultResponse): ScanEntity {
+        return ScanEntity(
+            id = response.image.imageId,
+            timestamp = dateFormatter(response.image.createdAt),
+            uri = response.image.url,
+            name = response.image.kelas,
+            shortDesc = response.image.shortDesc,
+            longDesc = response.image.longDesc,
+            physicalCar = response.image.ciriFisik,
+            chemicalChar = response.image.ciriKimia,
+            morphologyChar = response.image.ciriMorfologi,
+            spread = response.image.persebaran,
+            property = response.image.kandungan
+        )
+    }
 
     companion object{
+        const val TAG = "ScanRepository"
+
         @Volatile
         private var instance : ScanRepository? = null
 
         fun getInstance(
-            apiService:ApiService,
+            apiService:ScanApiService,
             scanDatabase: ScanDatabase,
         ) : ScanRepository =
             instance ?: synchronized(this){
