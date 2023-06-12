@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,9 +57,14 @@ class ProfileFragment : Fragment() {
 
     private fun setupView() {
         viewModel?.getUserData()?.observe(viewLifecycleOwner) { user ->
-            val drawable = createCustomDrawable(requireContext(), user.name[0].uppercaseChar())
+            try {
+                val drawable = createCustomDrawable(requireContext(), user.name[0].uppercaseChar())
+                binding?.ivProfile?.setImageDrawable(drawable)
+            }
+            catch (e:Exception){
+                Log.e(TAG, e.message.toString())
+            }
             binding?.apply {
-                ivProfile.setImageDrawable(drawable)
                 tvUsername.text = user.name
                 tvEmail.text = user.email
             }
@@ -138,5 +144,9 @@ class ProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object{
+        private const val TAG = "ProfileFragment"
     }
 }
