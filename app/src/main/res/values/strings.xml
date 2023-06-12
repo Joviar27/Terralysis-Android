@@ -33,7 +33,7 @@
     <string name="morphology_char">Morphology Character</string>
     <string name="chemical_char">Chemical Character</string>
     <string name="spread">Spread</string>
-    <string name="label">%s (%s)</string>
+    <string name="label" translatable="false">%s (%s)</string>
 
     <!--  Signin and Signup  -->
     <string name="alamat_email">Email</string>
@@ -60,7 +60,7 @@
     <string name="failed_capture_message">Failed to capture image</string>
     <string name="failed_upload_message">Failed to analyze image</string>
     <string name="failed_gallery_message">Failed to pick image from gallery</string>
-    <string name="process_message">Analyzing image...</string>
+    <string name="process_message">Analyzing image…</string>
     <string name="chooser">Choose image</string>
     <string name="take_picture">Take picture</string>
     <string name="switch_camera">Switch camera</string>
