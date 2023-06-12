@@ -90,8 +90,8 @@ class ProfileFragment : Fragment() {
             }
         return when(currentLocale.language){
             "en" -> "English"
-            "id" -> "Bahasa"
-            "es" -> "Spanish"
+            "id" -> "Indonesia"
+            "es" -> "Espanyol"
             else -> currentLocale.language
         }
     }
@@ -119,6 +119,7 @@ class ProfileFragment : Fragment() {
                 dialog.dismiss()
             }
             .setPositiveButton(resources.getString(R.string.positive)) { _, _ ->
+                viewModel?.deleteLocalData()
                 viewModel?.logout()
             }
             .show()
