@@ -2,12 +2,14 @@ package com.example.terralysis.util
 
 import android.content.ContentResolver
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Matrix
+import android.graphics.*
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.media.ExifInterface
 import android.net.Uri
 import android.os.Environment
+import androidx.core.content.ContextCompat
+import com.example.terralysis.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -32,6 +34,26 @@ fun dateFormater(date: String): String {
     val outputFormat = SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.getDefault())
     outputFormat.timeZone = TimeZone.getTimeZone("GMT")
     return outputFormat.format(date)
+}
+
+fun createCustomDrawable(context: Context, char: Char): Drawable {
+    val mBitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
+    val mCanvas = Canvas(mBitmap)
+    val titlePaint = Paint(Paint.FAKE_BOLD_TEXT_FLAG)
+
+    mCanvas.drawColor(ContextCompat.getColor(context, R.color.secondary))
+    titlePaint.apply {
+        textSize = 50f
+        color = ContextCompat.getColor(context, R.color.white)
+        textAlign = Paint.Align.CENTER
+    }
+
+    val x = mCanvas.width / 2f
+    val y = (mCanvas.height / 2f) - ((titlePaint.descent() + titlePaint.ascent()) / 2f)
+
+    mCanvas.drawText(char.toString(), x, y, titlePaint)
+
+    return BitmapDrawable(context.resources, mBitmap)
 }
 
 fun rotateImage(imagePath: String){

@@ -11,6 +11,7 @@ import com.example.terralysis.R
 import com.example.terralysis.databinding.LayoutHomeBinding
 import com.example.terralysis.util.CarouselAdapter
 import com.example.terralysis.util.ViewModelFactory
+import com.example.terralysis.util.createCustomDrawable
 import com.google.android.material.carousel.CarouselLayoutManager
 
 class HomeFragment : Fragment() {
@@ -42,7 +43,11 @@ class HomeFragment : Fragment() {
 
     private fun setUser() {
         viewModel.getUserData().observe(viewLifecycleOwner) { result ->
-            binding?.tvWelcomeName?.text = resources.getString(R.string.home_welcome_message, result.name)
+            val drawable = createCustomDrawable(requireContext(), result.name[0].uppercaseChar())
+            binding?.apply {
+                ivProfile.setImageDrawable(drawable)
+                tvWelcomeName.text = resources.getString(R.string.home_welcome_message, result.name)
+            }
         }
     }
 

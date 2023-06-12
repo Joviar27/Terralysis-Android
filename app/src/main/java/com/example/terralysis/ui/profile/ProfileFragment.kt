@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import com.example.terralysis.R
 import com.example.terralysis.databinding.LayoutProfileBinding
 import com.example.terralysis.util.ViewModelFactory
+import com.example.terralysis.util.createCustomDrawable
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
 
@@ -54,12 +55,13 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupView() {
-        //Temp - until found default pic
-        binding?.ivProfile?.setImageResource(R.color.secondary)
-
         viewModel?.getUserData()?.observe(viewLifecycleOwner) { user ->
-            binding?.tvUsername?.text = user.name
-            binding?.tvEmail?.text = user.email
+            val drawable = createCustomDrawable(requireContext(), user.name[0].uppercaseChar())
+            binding?.apply {
+                ivProfile?.setImageDrawable(drawable)
+                tvUsername?.text = user.name
+                tvEmail?.text = user.email
+            }
         }
 
         binding?.itemBahasa?.apply {
