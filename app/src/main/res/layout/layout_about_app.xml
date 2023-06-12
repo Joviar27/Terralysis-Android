@@ -44,10 +44,18 @@
             android:background="@drawable/background_rounded12"
             android:backgroundTint="?attr/colorSurfaceVariant">
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_aboutApp"
+                android:id="@+id/tv_aboutApp1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:maxLines="12"
+                tools:text="@tools:sample/lorem/random"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_aboutApp2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:maxLines="12"
                 tools:text="@tools:sample/lorem/random"/>
@@ -73,6 +81,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:textColor="@color/link"
+                android:clickable="true"
                 style="@style/TextAppearance.Material3.BodyLarge"
                 android:text="@string/repo_link"/>
         </LinearLayout>
