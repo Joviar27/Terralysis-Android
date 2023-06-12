@@ -19,7 +19,7 @@
     <!-- About App   -->
     <string name="version_code">1.0.0</string>
     <string name="repo_link">https://github.com/Joviar27/Terralysis</string>
-    <string name="our_repository">Our Repository</string>
+    <string name="our_repository">Repositori Kami</string>
     <string name="about_1">Terralysis adalah aplikasi identifikasi tanah yang dikembangkan untuk memberikan pengguna alat yang mudah digunakan untuk mengidentifikasi jenis tanah secara akurat. Dengan mengunggah foto sampel tanah, pengguna dapat dengan cepat mendapatkan informasi detail tentang jenis tanah tersebut seperti kandungan dan ciri-ciri fisik maupun kimia. Informasi ini penting untuk memilih tanaman yang sesuai, menerapkan teknik budidaya yang efektif, dan membuat keputusan yang berdasarkan data tentang penggunaan pupuk.</string>
     <string name="about_2">Terralysis bertujuan untuk meningkatkan produktivitas pertanian dan menjaga kesehatan tanah secara efektif, mengatasi kurangnya keahlian dan pengetahuan dalam bidang ilmu tanah di Indonesia. Dengan memanfaatkan teknologi, Terralysis memberdayakan pengguna untuk mengambil keputusan yang berdasarkan informasi, yang pada akhirnya akan berkontribusi pada ketahanan pangan dan pertanian yang berkelanjutan di Indonesia.</string>
 
@@ -28,6 +28,11 @@
 
     <!-- Detail   -->
     <string name="cd_gambar_tanah">Gambar Tanah</string>
+    <string name="property">Kandungan</string>
+    <string name="physical_char">Karakter Fisik</string>
+    <string name="morphology_char">Karakter Morfologis</string>
+    <string name="chemical_char">Karakter Kimia</string>
+    <string name="spread">Persebaran</string>
 
     <!--  Signin and Signup  -->
     <string name="alamat_email">Email</string>
@@ -72,6 +77,7 @@
     <string name="signup_failed">Gagal mendaftarkan akun, silahkan coba lagi</string>
     <string name="signin_succcess">Anda telah masuk</string>
     <string name="signup_succcess">Akun berhasil dibuat, silahkan masuk</string>
+    <string name="err_api_problem">Gagal memperbaharui data</string>
 
     <!-- Bantuan   -->
     <string name="name">Nama\t:\t %s</string>
@@ -103,5 +109,8 @@
     <string name="cdesc_prepare_sample">Tanah di dalam wadah</string>
     <string name="cdesc_adjust_lighting">Tanah dengan pencahayaan bagus</string>
     <string name="cdesc_quality_image">Gambar tanah dengan kualitas bagus</string>
+
+    <!-- History   -->
+    <string name="empty_history">Belum ada riwayat,\nmulai pindai sekarang!</string>
 
 </resources>
