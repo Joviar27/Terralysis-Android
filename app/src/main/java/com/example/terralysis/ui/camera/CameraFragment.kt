@@ -174,15 +174,18 @@ class CameraFragment : Fragment() {
             //For later on if need compressing
             //val compressedFile = reduceFileImage(myFile)
 
-            val requestImageFile = myFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val requestImageFile = myFile.asRequestBody("file/jpeg".toMediaTypeOrNull())
 
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                "image",
+                "file",
                 myFile.name,
                 requestImageFile
             )
-            viewModel?.requestScan(imageMultipart)?.observe(viewLifecycleOwner) {
-                handleScanResult(it)
+
+            viewModel?.getUserData()?.observe(viewLifecycleOwner){ user ->
+                viewModel?.requestScan(imageMultipart, user.userId)?.observe(viewLifecycleOwner) {
+                    handleScanResult(it)
+                }
             }
         }
     }
