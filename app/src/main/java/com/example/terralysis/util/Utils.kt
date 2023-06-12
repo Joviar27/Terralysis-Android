@@ -26,14 +26,14 @@ fun createTempFile(context: Context): File {
     return File.createTempFile(timeStamp, ".jpg", storageDir)
 }
 
-fun dateFormater(date: String): String {
-    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+fun dateFormatter(date: String): String {
+    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
     inputFormat.timeZone = TimeZone.getTimeZone("GMT")
-    val date = inputFormat.parse(date)
+    val parsedDate = inputFormat.parse(date)
 
     val outputFormat = SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.getDefault())
-    outputFormat.timeZone = TimeZone.getTimeZone("GMT")
-    return outputFormat.format(date)
+    outputFormat.timeZone = TimeZone.getDefault()
+    return outputFormat.format(parsedDate)
 }
 
 fun createCustomDrawable(context: Context, char: Char): Drawable {
