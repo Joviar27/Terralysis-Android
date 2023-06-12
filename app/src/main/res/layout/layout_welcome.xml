@@ -13,7 +13,8 @@
         android:src="@drawable/logo_terralysis"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/cdesc_logo_terralysis"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_welcome"
@@ -61,7 +62,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_signup"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/cdesc_navigate_to_signin"/>
 
     <Button
         android:id="@+id/btn_signup"
@@ -75,7 +77,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_signin" />
+        app:layout_constraintStart_toEndOf="@+id/btn_signin"
+        android:contentDescription="@string/cdesc_navigate_to_signup"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

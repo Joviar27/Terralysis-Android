@@ -18,7 +18,8 @@
             android:src="@color/primaryContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tv_welcome_name"
@@ -48,7 +49,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+            android:contentDescription="@string/cdesc_photo_profile"/>
 
         <include
             android:id="@+id/btn_about_app"
@@ -113,6 +115,7 @@
             android:layout_marginBottom="16dp"
             android:clipChildren="false"
             android:clipToPadding="false"
+            android:contentDescription="@string/cdesc_carosale"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
