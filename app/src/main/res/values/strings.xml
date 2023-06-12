@@ -27,6 +27,12 @@
 
     <!-- Detail   -->
     <string name="cd_gambar_tanah">Gambar Tanah</string>
+    <string name="property">Kandungan</string>
+    <string name="physical_char">Ciri Fisik</string>
+    <string name="morphology_char">Ciri Morfologi</string>
+    <string name="chemical_char">Ciri Kimia</string>
+    <string name="spread">Persebaran</string>
+    <string name="label">%s (%s)</string>
 
     <!--  Signin and Signup  -->
     <string name="alamat_email">Email</string>
@@ -43,7 +49,7 @@
     <string name="title_scan">Scan</string>
     <string name="title_guide">Panduan</string>
 
-    <!-- Profil  -->
+    <!-- Profile  -->
     <string name="language">Bahasa</string>
     <string name="help">Bantuan</string>
     <string name="about_app">Tentang Aplikasi</string>
@@ -71,8 +77,9 @@
     <string name="signup_failed">Gagal mendaftarkan akun, silahkan coba lagi</string>
     <string name="signin_succcess">Anda telah masuk</string>
     <string name="signup_succcess">Akun berhasil dibuat, silahkan masuk</string>
+    <string name="err_api_problem">Gagal memperbaharui data</string>
 
-    <!-- Bantuan   -->
+    <!-- Help   -->
     <string name="name">Nama\t:\t %s</string>
     <string name="email">Email\t:\t %s</string>
 
@@ -80,4 +87,7 @@
     <string name="confirm_logout">Anda yakin ingin keluar?</string>
     <string name="positive">Ya</string>
     <string name="negative">Tidak</string>
+
+    <!--  History  -->
+    <string name="empty_history">Belum ada hasil analisa,\nMulai scan yuk!</string>
 </resources>
