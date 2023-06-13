@@ -35,6 +35,8 @@
   The help section provides additional assistance by offering contact information for users to seek support and assistance from the developers.
 - About App\
   The about app section provides information about Terralysis, including its purpose and app version.
+- Log out\
+The logout feature allows users to securely exit their account and restrict access to their saved data.
 ## Permission
 
 - Internet\
