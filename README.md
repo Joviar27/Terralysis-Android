@@ -75,7 +75,9 @@ The logout feature allows users to securely exit their account and restrict acce
 
     - Clone the repository :
     
-        ```git clone https://github.com/Joviar27/Terralysis-Android```
+        ```
+        git clone https://github.com/Joviar27/Terralysis-Android
+        ```
 
 - Open the project in android studio
 - Run the application
