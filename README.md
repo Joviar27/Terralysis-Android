@@ -2,14 +2,11 @@
 
 ## Architecture
 
-![arch1](https://github.com/Joviar27/Terralysis-Android/assets/109568118/0acc385a-f756-4ab9-a89c-470220787271)
+![architecture](https://github.com/Joviar27/Terralysis-Android/assets/109568118/5337e6df-cc66-401d-97d6-a74602b20330)
 
 ### App Screens/Components
 
-![screen1](https://github.com/Joviar27/Terralysis-Android/assets/109568118/19edcff6-a7ae-4bc5-ad5e-b28b8a1a5a52)
-
-
-![screen2](https://github.com/Joviar27/Terralysis-Android/assets/109568118/f1ff9779-343b-428c-8236-bbc26c7b9798)
+![screen](https://github.com/Joviar27/Terralysis-Android/assets/109568118/a71ecc08-acee-4e8a-92ee-345176c23fcc)
 
 ## Features
 
