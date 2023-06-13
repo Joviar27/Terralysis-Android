@@ -4,7 +4,7 @@
 
 ![architecture](https://github.com/Joviar27/Terralysis-Android/assets/109568118/5337e6df-cc66-401d-97d6-a74602b20330)
 
-### App Screens/Components
+## App Screens/Components
 
 ![screen](https://github.com/Joviar27/Terralysis-Android/assets/109568118/a71ecc08-acee-4e8a-92ee-345176c23fcc)
 
@@ -63,7 +63,7 @@ The logout feature allows users to securely exit their account and restrict acce
 - Android Studio
 - Target device (Android device or emulator) with minimum android version of 10(Q) or higher
 
-### Installation
+## Installation
 
 - Download or Clone this project to your computer
     
