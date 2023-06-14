@@ -2,7 +2,7 @@
 
 ## Architecture
 
-![architecture](https://github.com/Joviar27/Terralysis-Android/assets/109568118/5337e6df-cc66-401d-97d6-a74602b20330)
+![architecture1](https://github.com/Joviar27/Terralysis-Android/assets/109568118/ccc45a5f-a795-415a-83f8-8e6246aecb99)
 
 ## App Screens/Components
 
