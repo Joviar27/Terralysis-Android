@@ -85,7 +85,6 @@
     <string name="email">Email\t:\t %s</string>
 
     <!-- Dialog  -->
-    <string name="empty_history">No scan history found,\nStart scanning now!</string>
     <string name="confirm_logout">Are you sure you want to log out?</string>
     <string name="positive">Yes</string>
     <string name="negative">No</string>
@@ -111,5 +110,11 @@
     <string name="cdesc_prepare_sample">Soil in a container</string>
     <string name="cdesc_adjust_lighting">Soil with good lighting</string>
     <string name="cdesc_quality_image">Image of soil with good quality</string>
+    <string name="cdesc_reload_history">Reload history</string>
+
+    <!-- History -->
+    <string name="empty_history">No scan history found,\nStart scanning now!</string>
+    <string name="failed_load_history">Failed to load history. \nPlease try again</string>
+    <string name="try_again">Try Again</string>
 
 </resources>
