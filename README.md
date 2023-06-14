@@ -3,7 +3,7 @@
 ## Architecture
 
 <p align="center">
-    <img src="https://github.com/Joviar27/Terralysis-Android/assets/109568118/540e5d6c-bc49-49f5-811b-7fc6128b4088" alt="Architecture">
+    <img src="https://github.com/Joviar27/Terralysis-Android/assets/95416905/6b14c6f8-8ca3-4e9a-8782-3789026aa5f8" alt="Architecture">
 </p>
 
 ## App Screens/Components
