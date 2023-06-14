@@ -46,6 +46,15 @@ class HistoryFragment : Fragment() {
 
         setRVComponent()
 
+        loadHistory()
+
+        binding?.btnRefresh?.setOnClickListener{
+            loadHistory()
+        }
+    }
+
+    private fun loadHistory(){
+        showError(false)
         viewModel?.getUserData()?.observe(viewLifecycleOwner){ user ->
             getHistory(user.userId)
         }
@@ -73,11 +82,14 @@ class HistoryFragment : Fragment() {
     private fun getHistory(userId : String) {
         viewModel?.getHistory(userId)?.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is ResultState.Loading -> showLoading(true)
+                is ResultState.Loading -> {
+                    showLoading(true)
+                }
                 is ResultState.Error -> {
                     showToast(resources.getString(R.string.err_api_problem))
                     Log.e(TAG, result.error)
                     showLoading(false)
+                    showError(true)
                 }
                 is ResultState.Success -> {
                     showLoading(false)
@@ -97,8 +109,25 @@ class HistoryFragment : Fragment() {
         binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
+
     private fun showEmpty(isEmpty : Boolean){
-        binding?.emptyView?.visibility = if (isEmpty) View.VISIBLE else View.GONE
+        binding?.apply {
+            emptyView?.apply {
+                visibility = if (isEmpty) View.VISIBLE else View.GONE
+                text = resources.getString(R.string.empty_history)
+            }
+            btnRefresh.visibility = View.GONE
+        }
+    }
+
+    private fun showError(isError : Boolean){
+        binding?.apply {
+            emptyView?.apply {
+                visibility = if (isError) View.VISIBLE else View.GONE
+                text = resources.getString(R.string.failed_load_history)
+            }
+            btnRefresh.visibility = if (isError) View.VISIBLE else View.GONE
+        }
     }
 
     private fun showToast(message : String){
