@@ -1,4 +1,4 @@
-# App Documentation (Mobile Development) : Terralysis
+# Terralysis Mobile Development
 
 ## Architecture
 
