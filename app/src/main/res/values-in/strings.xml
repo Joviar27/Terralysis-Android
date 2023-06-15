@@ -109,8 +109,10 @@
     <string name="cdesc_prepare_sample">Tanah di dalam wadah</string>
     <string name="cdesc_adjust_lighting">Tanah dengan pencahayaan bagus</string>
     <string name="cdesc_quality_image">Gambar tanah dengan kualitas bagus</string>
+    <string name="cdesc_reload_history">Muat ulang riwayat</string>
 
     <!-- History   -->
     <string name="empty_history">Belum ada riwayat,\nmulai pindai sekarang!</string>
-
+    <string name="failed_load_history">Gagal memuat riwayat. \nSilakan coba lagi</string>
+    <string name="try_again">Coba Lagi</string>
 </resources>
