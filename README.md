@@ -6,6 +6,11 @@
     <img src="https://github.com/Joviar27/Terralysis-Android/assets/95416905/3d59358f-0ab2-4ad7-a241-9c854196c5b5" alt="Architecture">
 </p>
 
+## Wireframe and Prototype
+- [Wireframe](https://www.figma.com/file/UdIFNof3Qd4eqGJ3TJUjRf/Terralysis?type=design&node-id=44-2&t=TxUlRIGd1phjoVdZ-0)
+- [Low Fidelity](https://www.figma.com/file/UdIFNof3Qd4eqGJ3TJUjRf/Terralysis?type=design&node-id=0-1&t=zatAXfTsxJOAXnw2-0)
+- [Prototype](https://www.figma.com/file/UdIFNof3Qd4eqGJ3TJUjRf/Terralysis?type=design&node-id=20-2&t=TxUlRIGd1phjoVdZ-0)
+
 ## App Screens/Components
 
 <p align="center">
